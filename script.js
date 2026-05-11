@@ -19,3 +19,12 @@ sections.forEach(section => {
     section.style.transform = "translateY(50px)";
     section.style.opacity = "0";
 });
+
+/* MOBILE NAVBAR */
+
+const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
