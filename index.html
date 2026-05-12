@@ -2615,12 +2615,21 @@
 
 </body>
 
-    <script>
-        const toggleBtn = document.querySelector(".menu-toggle");
-        const menu = document.querySelector(".nav-menu");
-    
-        toggleBtn.addEventListener("click", () => {
-            menu.classList.toggle("active");
+<script>
+    const toggleBtn = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu li a");
+
+    // Open / Close Menu
+    toggleBtn.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+
+    // Auto Close After Clicking Link
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            menu.classList.remove("active");
         });
-    </script>
+    });
+</script>
 </html>
