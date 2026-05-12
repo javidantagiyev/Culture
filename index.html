@@ -4,7 +4,385 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Azərbaycan Mədəniyyəti və Tarixi</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --crimson: #A0192A;
+            --gold: #C8922A;
+            --deep: #1A1009;
+            --cream: #FAF5EC;
+            --warm: #F0E8D5;
+            --text: #2C1A0E;
+            --muted: #7A5C3C;
+            --border: #D4B896;
+            --accent: #3D6B4F;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--cream);
+            color: var(--text);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--deep);
+            color: var(--cream);
+            padding: 60px 40px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 30px,
+                rgba(200,146,42,0.06) 30px,
+                rgba(200,146,42,0.06) 31px
+            );
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--crimson) 33%, var(--gold) 33% 66%, var(--accent) 66%);
+        }
+        header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 14px;
+            position: relative;
+        }
+        header p {
+            font-size: 1rem;
+            color: var(--border);
+            font-style: italic;
+            position: relative;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            background: var(--warm);
+            border-bottom: 2px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 12px rgba(26,16,9,0.12);
+        }
+        nav ul {
+            list-style: none;
+            display: flex; flex-wrap: wrap;
+            padding: 0 20px;
+            gap: 0;
+        }
+        nav ul li a {
+            display: block;
+            padding: 14px 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        nav ul li a:hover {
+            color: var(--crimson);
+            border-bottom-color: var(--crimson);
+        }
+
+        /* ===== MAIN ===== */
+        main { max-width: 900px; margin: 0 auto; padding: 50px 30px 80px; }
+
+        section {
+            margin-bottom: 70px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child { border-bottom: none; }
+
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--crimson);
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gold);
+            line-height: 1.2;
+        }
+        h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 30px 0 14px;
+            padding-left: 14px;
+            border-left: 3px solid var(--gold);
+        }
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin: 22px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'Source Serif 4', serif;
+        }
+        h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 18px 0 8px;
+        }
+
+        p { margin-bottom: 14px; }
+
+        ul {
+            list-style: none;
+            margin: 10px 0 16px 0;
+        }
+        ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+            color: var(--text);
+        }
+        ul li::before {
+            content: '◆';
+            position: absolute; left: 0;
+            color: var(--gold);
+            font-size: 0.55rem;
+            top: 8px;
+        }
+
+        blockquote {
+            background: var(--warm);
+            border-left: 4px solid var(--crimson);
+            padding: 18px 24px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--muted);
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* ===== PERSON CARD ===== */
+        .person-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 22px 26px;
+            margin: 20px 0;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(26,16,9,0.06);
+        }
+        .person-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--crimson);
+            margin: 0 0 4px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 700;
+        }
+        .person-card .years {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+        .person-card .works-title {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* ===== MUĞAM CARDS ===== */
+        .mugam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
+            margin: 20px 0;
+        }
+        .mugam-card {
+            background: var(--deep);
+            color: var(--cream);
+            border-radius: 8px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+        .mugam-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .mugam-card:nth-child(1)::before { background: #C8922A; }
+        .mugam-card:nth-child(2)::before { background: #A0192A; }
+        .mugam-card:nth-child(3)::before { background: #3D6B4F; }
+        .mugam-card:nth-child(4)::before { background: #7A5C3C; }
+        .mugam-card:nth-child(5)::before { background: #5A7A9A; }
+        .mugam-card:nth-child(6)::before { background: #8A4A6A; }
+        .mugam-card:nth-child(7)::before { background: #9A7A2A; }
+        .mugam-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 0 0 8px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .mugam-card p {
+            font-size: 0.9rem;
+            color: rgba(250,245,236,0.8);
+            margin-bottom: 8px;
+        }
+        .mugam-card .mood {
+            display: inline-block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            border: 1px solid rgba(200,146,42,0.4);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+
+        /* ===== CARDS ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .card {
+            background: var(--warm);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 18px;
+            border-top: 3px solid var(--crimson);
+        }
+        .card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--crimson);
+            margin: 0 0 8px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .card p { font-size: 0.9rem; margin: 0; }
+
+        /* ===== FOOD GRID ===== */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .food-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 18px;
+            border-left: 4px solid var(--gold);
+        }
+        .food-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--deep);
+            margin: 0 0 8px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .food-card p { font-size: 0.88rem; margin-bottom: 8px; }
+
+        /* ===== INSTRUMENT GRID ===== */
+        .instrument-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .instrument-card {
+            background: var(--deep);
+            color: var(--cream);
+            border-radius: 6px;
+            padding: 18px;
+            text-align: center;
+        }
+        .instrument-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin: 0 0 8px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .instrument-card p { font-size: 0.88rem; color: rgba(250,245,236,0.8); margin: 0; }
+
+        /* ===== TIMELINE ===== */
+        .timeline { margin: 20px 0; }
+        .timeline-item {
+            display: flex; gap: 20px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+        .timeline-item h4 {
+            font-family: 'Playfair Display', serif;
+            background: var(--crimson);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            margin: 0;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            min-width: 70px;
+            text-align: center;
+        }
+        .timeline-item p { margin: 4px 0 0; }
+
+        /* ===== SUBSECTION ===== */
+        .subsection {
+            background: var(--warm);
+            border-radius: 6px;
+            padding: 22px 26px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        .subsection h3 { margin-top: 0; }
+        .subsection h4 { margin-top: 0; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--deep);
+            color: var(--border);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 30px 16px 60px; }
+            h2 { font-size: 1.5rem; }
+            nav ul li a { padding: 10px 8px; font-size: 0.7rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -16,25 +394,28 @@
 <nav>
     <ul>
         <li><a href="#milli">Milli Kimlik</a></li>
-        <li><a href="#dede">Kitabi Dədə Qorqud</a></li>
-        <li><a href="#qizil">Müsəlman Mədəniyyətinin Qızıl Çağı</a></li>
-        <li><a href="#nizami">Nizami Gəncəvi</a></li>
-        <li><a href="#maarif">Maarifçilik Hərəkatı</a></li>
-        <li><a href="#cumhuriyyet">Azərbaycan Cümhuriyyəti</a></li>
+        <li><a href="#dede">Dədə Qorqud</a></li>
+        <li><a href="#qizil">Qızıl Çağ</a></li>
+        <li><a href="#nizami">Nizami</a></li>
+        <li><a href="#maarifcilik">Maarifçilik</a></li>
+        <li><a href="#cumhuriyyet">Cümhuriyyət</a></li>
         <li><a href="#sovet">Sovet Dövrü</a></li>
-        <li><a href="#ilkler">Azərbaycan İlkləri</a></li>
+        <li><a href="#ilkler">İlklər</a></li>
         <li><a href="#dil">Ədəbi Dil</a></li>
-        <li><a href="#metbex">Azərbaycan Mətbəxi</a></li>
-        <li><a href="#teatr">Azərbaycan Teatrı</a></li>
-        <li><a href="#musiqi">Azərbaycan Musiqisi</a></li>
-        <li><a href="#kino">Azərbaycan Kinosu</a></li>
-        <li><a href="#din">Azərbaycan Dindarlığı</a></li>
+        <li><a href="#metbex">Mətbəx</a></li>
+        <li><a href="#teatr">Teatr</a></li>
+        <li><a href="#musiqi">Musiqi</a></li>
+        <li><a href="#kino">Kino</a></li>
+        <li><a href="#din">Dindarlıq</a></li>
         <li><a href="#multikulturalizm">Multikulturalizm</a></li>
     </ul>
 </nav>
 
 <main>
 
+<!-- ========================= -->
+<!-- 1. MİLLİ KİMLİK -->
+<!-- ========================= -->
 <section id="milli">
     <h2>1. Milli Kimlik</h2>
 
@@ -56,30 +437,112 @@
         <li>Dövlətçilik tarixi</li>
     </ul>
 
-    <h3>Şeirlər və Əsərlər</h3>
-    <p>
-        Azərbaycan milli ruhunu əks etdirən əsas şair və yazıçılar:
-    </p>
+    <h3>Milli Ruhun Daşıyıcıları — Şair və Yazıçılar</h3>
 
-    <ul>
-        <li>Məhəmməd Füzuli</li>
-        <li>Nizami Gəncəvi</li>
-        <li>Mirzə Ələkbər Sabir</li>
-        <li>Səməd Vurğun</li>
-        <li>Bəxtiyar Vahabzadə</li>
-        <li>Xəlil Rza Ulutürk</li>
-    </ul>
+    <div class="person-card">
+        <h4>Məhəmməd Füzuli</h4>
+        <div class="years">təxm. 1494–1556 · Kərbəla</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>Leyli və Məcnun</strong> (1536) — Şərq ədəbiyyatının şah əsəri, məsnəvi janrında eşq dastanı</li>
+            <li><strong>Hədiqətüs-süəda</strong> ("Xoşbəxtlər bağı") — Kərbəla hadisələri haqqında məqtəl</li>
+            <li><strong>Azərbaycanca Divan</strong> — qəzəllər, qəsidələr, rübailer</li>
+            <li><strong>Farsca Divan</strong> — lirik şeirlər toplusu</li>
+            <li><strong>Ərəbcə Divan</strong> — 11 qəsidə, "Mətləül-etiqad" fəlsəfi traktatı</li>
+            <li><strong>Bəngü-Badə</strong> — alleqorik poema</li>
+            <li><strong>Rindü Zahid</strong> — fəlsəfi diyaloq</li>
+            <li><strong>Şikayətnamə</strong> — məşhur məktub-şikayət</li>
+            <li><strong>Səhhət və Mərəz</strong> — nəsr əsəri</li>
+            <li>Məşhur qəzəlləri: "Məni candan usandırdı", "Söz", "Can vermə qəmi-eşqə"</li>
+        </ul>
+        <p><em>Üç dildə — Azərbaycan türkcəsi, ərəb və fars dillərində yazmışdır. Türkşünaslıq professoru Ketlin Berrill onu "bütün Azərbaycan şairlərinin ən öndə gedəni" adlandırmışdır.</em></p>
+    </div>
+
+    <div class="person-card">
+        <h4>Nizami Gəncəvi</h4>
+        <div class="years">1141–1209 · Gəncə</div>
+        <div class="works-title">Xəmsə (Beşlik) — 5 böyük poema</div>
+        <ul>
+            <li><strong>Sirlər Xəzinəsi</strong> (1163) — 20 məqalə və 20 hekayətdən ibarət didaktik poema</li>
+            <li><strong>Xosrov və Şirin</strong> (1180) — Sasani şahı Xosrov Pərvizin eşq dastanı</li>
+            <li><strong>Leyli və Məcnun</strong> (1188) — ölməz eşq dastanı</li>
+            <li><strong>Yeddi Gözəl</strong> (1197) — Bəhram Gur haqqında 7 hekayə, 4637–5136 beyt</li>
+            <li><strong>İsgəndərnamə</strong> (1202) — Makedoniyalı İsgəndərin dastanı</li>
+        </ul>
+        <p><em>Həmçinin 6 qəsidə, 120 qəzəl, 30 rubai qalmışdır. Beş poemanı 30 il ərzində yazmışdır.</em></p>
+    </div>
+
+    <div class="person-card">
+        <h4>Mirzə Ələkbər Sabir</h4>
+        <div class="years">1862–1911 · Şamaxı</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Hophopnamə"</strong> — satirik şeir divanı (ölümündən sonra 1912-ci ildə nəşr edilmişdir)</li>
+            <li><strong>"Molla Nəsrəddin" jurnalında şeirlər</strong> (1906–1911) — əsas yaradıcılıq məkanı</li>
+            <li>Satirik şeirlər: "Ana dili", "Biz şairlərik", "Oxutmuram, oxumaz" və s.</li>
+            <li>Felyetonlar və məqalələr "Həyat", "İrşad", "Tazə həyat" qəzetlərində</li>
+        </ul>
+        <p><em>Azərbaycan satirik poeziyasının ən böyük nümayəndəsidir. Sosial zülmə, cəhalətə, fanatizmə qarşı qələmini qılıc kimi işlətmişdir.</em></p>
+    </div>
+
+    <div class="person-card">
+        <h4>Səməd Vurğun</h4>
+        <div class="years">1906–1956 · Qazax</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Azərbaycan"</strong> (1933–1935) — ən məşhur vətənpərvər şeiri</li>
+            <li><strong>"Vaqif"</strong> (1937) — tarixi dram, Azərbaycan Dövlət Mükafatı</li>
+            <li><strong>"Xanlar"</strong> (1939) — mənzum dram</li>
+            <li><strong>"İnsan"</strong> (1945) — fəlsəfi dram</li>
+            <li><strong>"Muğan"</strong> (1948) — poema</li>
+            <li><strong>"Aygün"</strong> (1950–1951) — poema</li>
+            <li><strong>"Zamanın bayraqdarı"</strong> (1952) — poema</li>
+            <li>S.Rüstəmlə birlikdə <strong>Azərbaycan himninin</strong> mətnini yazmışdır</li>
+        </ul>
+        <p><em>Azərbaycan sovet ədəbiyyatının zirvəsi hesab olunur. Stalin Mükafatı laureatıdır (1941).</em></p>
+    </div>
+
+    <div class="person-card">
+        <h4>Bəxtiyar Vahabzadə</h4>
+        <div class="years">1925–2009 · Şəki</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Gülüstan"</strong> — Azərbaycanın bölünmüşlüyünə həsr edilmiş poema</li>
+            <li><strong>"Özümüzdən narazıyam"</strong> — məşhur şeiri</li>
+            <li><strong>"Millətim"</strong> — vətənpərvər şeiri</li>
+            <li><strong>"İkinci səs"</strong>, <strong>"Yollar, yollar"</strong> — poemalar</li>
+            <li><strong>"Vicdan"</strong>, <strong>"Fəryad"</strong> — dram əsərləri</li>
+            <li>Seçilmiş əsərləri 2 cilddə toplanmışdır</li>
+        </ul>
+        <p><em>Sovet dövründə milli ruhun və dilin qoruyucusu kimi tanınmışdır. Azərbaycan Milli Elmlər Akademiyasının həqiqi üzvü idi.</em></p>
+    </div>
+
+    <div class="person-card">
+        <h4>Xəlil Rza Ulutürk</h4>
+        <div class="years">1932–1994 · Ordubad</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Türkün dili"</strong> — ən məşhur şeiri, dil haqqında lirik etiraf</li>
+            <li><strong>"Zəfər"</strong>, <strong>"Od və alov"</strong> — lirik şeir topluları</li>
+            <li><strong>"Susma, dilim"</strong> — milli oyanış şeiri</li>
+            <li><strong>"Dözüm"</strong>, <strong>"Çıraq"</strong> — şeir kitabları</li>
+        </ul>
+        <p><em>Azərbaycan milli oyanış hərəkatının poetik səsi hesab olunur. Şeirlərini ən çətin siyasi şəraitdə yazmışdır.</em></p>
+    </div>
 
     <p>
-        “Azərbaycan” anlayışı yalnız coğrafi məkan deyil, həm də milli düşüncə, mədəniyyət və mənəvi birliyi ifadə edir.
+        "Azərbaycan" anlayışı yalnız coğrafi məkan deyil, həm də milli düşüncə, mədəniyyət və mənəvi birliyi ifadə edir.
     </p>
 </section>
 
+<!-- ========================= -->
+<!-- 2. DƏDƏ QORQUD -->
+<!-- ========================= -->
 <section id="dede">
     <h2>2. Kitabi Dədə Qorqud</h2>
 
     <p>
-        “Kitabi Dədə Qorqud” oğuz türklərinin həyatını, qəhrəmanlığını, ailə dəyərlərini və mənəviyyatını əks etdirən ən mühüm dastanlardan biridir.
+        "Kitabi Dədə Qorqud" oğuz türklərinin həyatını, qəhrəmanlığını, ailə dəyərlərini və mənəviyyatını əks etdirən ən mühüm dastanlardan biridir. 2018-ci ildə UNESCO-nun qeyri-maddi mədəni irs siyahısına daxil edilmişdir.
     </p>
 
     <h3>Əsas Xüsusiyyətlər</h3>
@@ -87,7 +550,24 @@
         <li>12 boydan ibarətdir</li>
         <li>Türk xalqlarının ortaq irsidir</li>
         <li>Qəhrəmanlıq və ailə dəyərləri əsas mövzudur</li>
-        <li>Dədə Qorqud müdrik obrazdır</li>
+        <li>Dədə Qorqud müdrik obrazdır — ozandır, ağsaqqaldır, peyğəmbər mənzillidir</li>
+        <li>Drezden və Vatikan əlyazmaları mövcuddur</li>
+    </ul>
+
+    <h3>12 Boy</h3>
+    <ul>
+        <li>Boğac xan boyu</li>
+        <li>Salur Qazan boyu</li>
+        <li>Bamsı Beyrək boyu</li>
+        <li>Qazan bəyin oğlu Uruz bəyin dustaq olduğu boy</li>
+        <li>Duxa Qoca oğlu Dəli Domrul boyu</li>
+        <li>Qanlı Qoca oğlu Qanturalı boyu</li>
+        <li>Qazılıq qoca oğlu Yeynək boyu</li>
+        <li>Basat Təpəgöz'ü öldürdüyü boy</li>
+        <li>Begil oğlu Emrenin boyu</li>
+        <li>Uşun Qoca oğlu Səgrək boyu</li>
+        <li>Salur Qazanın dustaq olduğu boy</li>
+        <li>İç oğuza Dış oğuz asi olduğu boy</li>
     </ul>
 
     <h3>Əsas Mövzular</h3>
@@ -96,9 +576,13 @@
         <li>Qəhrəmanlıq</li>
         <li>Ailə və sədaqət</li>
         <li>Birlik və igidlik</li>
+        <li>Qadının hörmət statusu</li>
     </ul>
 </section>
 
+<!-- ========================= -->
+<!-- 3. QIZIL ÇAĞ -->
+<!-- ========================= -->
 <section id="qizil">
     <h2>3. Müsəlman Mədəniyyətinin Qızıl Çağı</h2>
 
@@ -115,43 +599,94 @@
 
     <h3>Müsəlmanların Qızıl Dövrü</h3>
     <p>
-        VIII-XIII əsrlər arasında elm, tibb, riyaziyyat, astronomiya və fəlsəfə sahəsində böyük inkişaf baş verdi.
+        VIII–XIII əsrlər arasında elm, tibb, riyaziyyat, astronomiya və fəlsəfə sahəsində böyük inkişaf baş verdi.
     </p>
 
-    <ul>
-        <li>Əl-Xarəzmi – cəbrin inkişafı</li>
-        <li>İbn Sina – tibb elmi</li>
-        <li>Əl-Biruni – astronomiya</li>
-        <li>Fərabi – fəlsəfə</li>
-    </ul>
+    <div class="person-card">
+        <h4>Əl-Xarəzmi (Məhəmməd ibn Musa)</h4>
+        <div class="years">780–850 · Xarəzm</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Kitab əl-muxtasar fi hesab əl-cəbr vəl-muqabələ"</strong> — "Cəbr" elminin əsasını qoyan əsər; "cəbr" sözü buradan gəlir</li>
+            <li><strong>"Kitab surat əl-ərz"</strong> — coğrafiya haqqında əsər</li>
+            <li>Hind rəqəmlərini Qərbə tanıtmışdır ("alqoritm" sözü onun adından gəlir)</li>
+        </ul>
+    </div>
+
+    <div class="person-card">
+        <h4>İbn Sina (Əbu Əli Hüseyn)</h4>
+        <div class="years">980–1037 · Əfşanə (Buxara yaxınlığı)</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Əl-Qanun fit-Tibb"</strong> ("Tibb Qanunu") — 5 cilddə əsər, Avropa universitetlərində XVII əsrə qədər dərslik olmuşdur</li>
+            <li><strong>"Kitab əş-Şifa"</strong> ("Şəfa kitabı") — fəlsəfə, musiqi, riyaziyyat, təbiiyyat</li>
+            <li><strong>"Kitab ən-Nəcat"</strong> — fəlsəfi xülasə</li>
+            <li>240-dan çox elmi əsər yazmışdır</li>
+        </ul>
+    </div>
+
+    <div class="person-card">
+        <h4>Əl-Biruni (Əbu Reyhan)</h4>
+        <div class="years">973–1048 · Xarəzm</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Kitab ət-Təhqiq ma lil-Hind"</strong> — Hindistan haqqında ensiklopedik tədqiqat</li>
+            <li><strong>"Əl-Qanun əl-Məsudi"</strong> — astronomiya ensiklopediyası</li>
+            <li><strong>"Kitab əl-Camahir"</strong> — mineralogiya haqqında</li>
+            <li>Yerin diametrini hesablamış, çoxlu dil öyrənmişdir</li>
+        </ul>
+    </div>
+
+    <div class="person-card">
+        <h4>Əl-Fərabi (Əbu Nəsr)</h4>
+        <div class="years">872–950 · Farab (Qazaxıstan)</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Kitab əl-Musiqi əl-Kəbir"</strong> — Böyük Musiqi Kitabı</li>
+            <li><strong>"Risalə fi-l-Əql"</strong> — Ağıl haqqında risalə</li>
+            <li><strong>"Əl-Mədinə əl-Fazilə"</strong> — İdeal şəhər haqqında</li>
+            <li>Aristotelin fəlsəfəsini İslam dünyasına gətirmiş, "İkinci müəllim" ləqəbi almışdır</li>
+        </ul>
+    </div>
 </section>
 
+<!-- ========================= -->
+<!-- 4. NİZAMİ GƏNCƏVİ -->
+<!-- ========================= -->
 <section id="nizami">
     <h2>4. Nizami Gəncəvi</h2>
 
     <p>
-        Nizami Gəncəvi XII əsrdə yaşamış böyük Azərbaycan şairi və mütəfəkkiridir.
-        O, dünya ədəbiyyatının ən böyük nümayəndələrindən hesab olunur.
+        Nizami Gəncəvi (1141–1209) XII əsrdə yaşamış böyük Azərbaycan şairi və mütəfəkkiridir. Gəncə şəhərini heç vaxt tərk etməmiş, bütün ömrünü burada keçirmişdir. Dünya ədəbiyyatının ən böyük nümayəndələrindən hesab olunur.
     </p>
 
-    <h3>Xəmsə</h3>
-    <ul>
-        <li>Sirlər Xəzinəsi</li>
-        <li>Xosrov və Şirin</li>
-        <li>Leyli və Məcnun</li>
-        <li>Yeddi Gözəl</li>
-        <li>İsgəndərnamə</li>
-    </ul>
+    <h3>Xəmsə — 5 Böyük Poema</h3>
+
+    <div class="subsection">
+        <h4>1. Sirlər Xəzinəsi (1163)</h4>
+        <p>İlk poeması. 20 məqalət və 20 hekayətdən ibarətdir. Vahid süjet xətti yoxdur. Mənəvi-əxlaqi mövzular işlənmişdir: ədalətin, zülmün, insan kamilliğinin poetik fəlsəfəsi.</p>
+
+        <h4>2. Xosrov və Şirin (1180)</h4>
+        <p>Sasani şahı Xosrov II Pervizin Şirinə olan məhəbbəti. Şərq ədəbiyyatında mükəmməl mənzum roman hesab olunur. Fərhadın böyük eşqi də bu əsərdə canlandırılmışdır.</p>
+
+        <h4>3. Leyli və Məcnun (1188)</h4>
+        <p>Qeys ibn əl-Müləvvəhin ölməz eşq dastanı. "İranika Ensiklopediyası"nda "türk məsnəvi ənənəsinin kulminasiya nöqtəsi" kimi təsvir edilmişdir.</p>
+
+        <h4>4. Yeddi Gözəl (1197)</h4>
+        <p>Sasani şahı Bəhram Gurun yeddi gözəl xanımla macəraları. Hər gözəl ayrı bir planetə, haftanın gününə uyğun rəngli sarayda yaşayır. 4637–5136 beytdən ibarətdir.</p>
+
+        <h4>5. İsgəndərnamə (1202)</h4>
+        <p>Makedoniyalı İsgəndərin dünya fəthini və fəlsəfi axtarışını tərənnüm edir. İki hissədən ibarətdir: "Şərəfnamə" (qəhrəmanlıq) və "İqbalnamə" (hikmət).</p>
+    </div>
 
     <p>
-        Nizaminin əsərlərində sevgi, ədalət, insanlıq və hikmət əsas yer tutur.
+        Nizaminin əsərlərində sevgi, ədalət, insanlıq və hikmət əsas yer tutur. Həmçinin 6 qəsidə, 120 qəzəl, 30 rübai qalmışdır. XIII əsrdən etibarən poemalarına 40-dan çox nəzirə yazılmışdır.
     </p>
 </section>
 
 <!-- ========================= -->
-<!-- MAARİFÇİLİK HƏRƏKATI -->
+<!-- 5. MAARİFÇİLİK HƏRƏKATI -->
 <!-- ========================= -->
-
 <section id="maarifcilik">
     <h2>5. Azərbaycan Maarifçilik Hərəkatı</h2>
 
@@ -160,48 +695,36 @@
     </p>
 
     <h3>Avropa Maarifçiliyi</h3>
-
     <p>
         XVIII əsrdə Avropada formalaşan maarifçilik hərəkatı azadlıq, bərabərlik və insan hüquqları ideyalarını yayırdı.
     </p>
-
     <blockquote>
-        “Sizin fikrinizlə razılaşmaya bilərəm, amma onu demək hüququnuzu müdafiə edərəm.”
+        "Sizin fikrinizlə razılaşmaya bilərəm, amma onu demək hüququnuzu müdafiə edərəm."
         — Volter
     </blockquote>
 
     <h3>Ensiklopediya Hərəkatı</h3>
-
     <p>
-        Deni Didro və digər maarifçilər böyük ensiklopediya layihəsi yaratmışdılar.
-    </p>
-
-    <p>
-        Məqsəd bütün bilikləri bir araya toplamaq idi.
+        Deni Didro və digər maarifçilər böyük ensiklopediya layihəsi yaratmışdılar. Məqsəd bütün bilikləri bir araya toplamaq idi.
     </p>
 
     <h3>Türk Dünyasında Maarifçilik</h3>
 
-    <div class="subsection">
+    <div class="person-card">
         <h4>Mahmud Kaşğari</h4>
-
-        <p>
-            “Divani Lüğət-it-Türk” əsərini yazmışdır.
-        </p>
-
-        <p>
-            Türk xalqları və dilləri haqqında ilk böyük ensiklopedik əsərlərdən biridir.
-        </p>
+        <div class="years">1005–1102 · Kaşğar</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Divani Lüğət-it-Türk"</strong> (1072–1074) — türk xalqları, dilləri və ədəbiyyatları haqqında ilk böyük ensiklopedik lüğət, 7500-dən çox söz</li>
+        </ul>
     </div>
 
     <h3>Azərbaycan Maarifçiliyi</h3>
-
     <p>
         XIX əsrdə Azərbaycanda milli maarifçilik hərəkatı formalaşmağa başladı.
     </p>
 
     <h4>Əsas məqsədlər:</h4>
-
     <ul>
         <li>Təhsilin inkişafı</li>
         <li>Cəhalətə qarşı mübarizə</li>
@@ -210,51 +733,51 @@
         <li>Milli kimliyin formalaşdırılması</li>
     </ul>
 
-    <h3>Həsən bəy Zərdabi</h3>
+    <div class="person-card">
+        <h4>Həsən bəy Zərdabi</h4>
+        <div class="years">1837–1907 · Zərdab</div>
+        <div class="works-title">Əsas fəaliyyəti</div>
+        <ul>
+            <li><strong>"Əkinçi" qəzeti</strong> (1875–1877) — Azərbaycanda ilk milli qəzet; Azərbaycan milli mətbuatının əsasını qoymuşdur</li>
+            <li>Bakı qəza məktəbinin müdiri; ana dilində tədris uğrunda mübarizə aparmışdır</li>
+            <li>Azərbaycanda ilk teatr tamaşasının təşkilatçılarından biri (1873)</li>
+        </ul>
+    </div>
 
-    <p>
-        Azərbaycan milli mətbuatının banisidir.
-    </p>
+    <div class="person-card">
+        <h4>Abbasqulu ağa Bakıxanov</h4>
+        <div class="years">1794–1847 · Bakı</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Gülüstani-İrəm"</strong> (1841) — Şirvan və Dağıstan tarixini əhatə edən elmi tarixi əsər</li>
+            <li><strong>"Kəşfül-Ğərəib"</strong> — coğrafiya haqqında</li>
+            <li><strong>"Riyazül-Qüds"</strong> — dini-etik əsər</li>
+            <li>Azərbaycan, rus, ərəb, fars, türk dillərini mükəmməl bilmiş, çoxsaylı elmi məqalələr yazmışdır</li>
+        </ul>
+    </div>
 
-    <ul>
-        <li>“Əkinçi” qəzetinin yaradıcısı</li>
-        <li>Maarifçi jurnalist</li>
-        <li>Təhsil tərəfdarı</li>
-    </ul>
-
-    <h3>Abbasqulu ağa Bakıxanov</h3>
-
-    <p>
-        Azərbaycan tarixçisi, maarifçisi və filosofudur.
-    </p>
-
-    <p>
-        “Gülüstani-İrəm” əsərinin müəllifidir.
-    </p>
-
-    <h3>Mirzə Fətəli Axundzadə</h3>
-
-    <p>
-        Azərbaycan dramaturgiyasının və realist ədəbiyyatının banilərindən biridir.
-    </p>
-
-    <ul>
-        <li>Əlifba islahatı ideyası</li>
-        <li>Satirik əsərlər</li>
-        <li>Dini fanatizmə qarşı çıxışlar</li>
-    </ul>
+    <div class="person-card">
+        <h4>Mirzə Fətəli Axundzadə</h4>
+        <div class="years">1812–1878 · Şəki</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>6 komedia</strong> (1850–1855): "Hacı Qara", "Müsyö Jordan", "Xırs quldurbasan" və b. — Azərbaycan dramaturgiyasının bünövrəsi</li>
+            <li><strong>"Aldanmış kəvakib"</strong> — roman</li>
+            <li><strong>"Kəmalüddövlə məktubları"</strong> — fəlsəfi traktat</li>
+            <li>Ərəb əlifbasının islahat layihəsi — türk xalqları üçün yeni əlifba təklifləri</li>
+        </ul>
+        <p><em>Azərbaycan dramaturgiyasının və realist ədəbiyyatın banisi.</em></p>
+    </div>
 
     <h3>Qəzet və Jurnallar</h3>
-
     <ul>
-        <li>Əkinçi</li>
-        <li>Molla Nəsrəddin</li>
-        <li>Kaspi</li>
-        <li>Füyuzat</li>
+        <li><strong>Əkinçi</strong> (1875) — Həsən bəy Zərdabi</li>
+        <li><strong>Molla Nəsrəddin</strong> (1906) — Cəlil Məmmədquluzadə; satirik jurnal</li>
+        <li><strong>Kaspi</strong> (1881) — rusca, ancaq azərbaycanlılar üçün</li>
+        <li><strong>Füyuzat</strong> (1906) — Əli bəy Hüseynzadə; milli-romantik istiqamət</li>
     </ul>
 
     <h3>Maarifçiliyin Nəticələri</h3>
-
     <ul>
         <li>Milli şüur gücləndi</li>
         <li>Ziyalı təbəqəsi yarandı</li>
@@ -263,28 +786,25 @@
 </section>
 
 <!-- ========================= -->
-<!-- AZƏRBAYCAN CÜMHURİYYƏTİ -->
+<!-- 6. CÜMHURİYYƏT -->
 <!-- ========================= -->
-
 <section id="cumhuriyyet">
     <h2>6. Azərbaycan Cümhuriyyəti</h2>
 
     <h3>Cümhuriyyət İdealı və Milli Kimlik</h3>
-
     <p>
         Azərbaycan Xalq Cümhuriyyəti 28 may 1918-ci ildə yaradılmışdır.
         Bu dövlət müsəlman Şərqində ilk demokratik parlamentli respublika idi.
     </p>
 
     <blockquote>
-        “Bir kərə yüksələn bayraq bir daha enməz.”
+        "Bir kərə yüksələn bayraq bir daha enməz."
         — Məhəmməd Əmin Rəsulzadə
     </blockquote>
 
     <h3>İstiqlal Bəyannaməsi</h3>
 
     <h4>Əsas prinsiplər:</h4>
-
     <ul>
         <li>Azərbaycan tam müstəqil dövlətdir</li>
         <li>Hakimiyyət xalqındır</li>
@@ -292,68 +812,77 @@
         <li>Millətindən və dinindən asılı olmayaraq hüquq bərabərliyi təmin edilir</li>
     </ul>
 
-    <h3>Milli Şura</h3>
+    <h3>Milli Şura — Əsas Nümayəndələr</h3>
 
-    <p>
-        Milli Şura Azərbaycan dövlətinin ilk ali idarəetmə orqanı olmuşdur.
-    </p>
+    <div class="person-card">
+        <h4>Məhəmməd Əmin Rəsulzadə</h4>
+        <div class="years">1884–1955 · Novxanı</div>
+        <div class="works-title">Siyasi fəaliyyəti</div>
+        <ul>
+            <li>Azərbaycan Xalq Cümhuriyyətinin qurucusu, Milli Şura sədri</li>
+            <li><strong>"İstiqlal"</strong> qəzetinin redaktoru</li>
+            <li><strong>"Azərbaycan Cümhuriyyəti"</strong> kitabının müəllifi</li>
+            <li><strong>"Əsrimizin Siyavuşu"</strong> — Stalini mövzusunda əsər</li>
+            <li>Müsavat Partiyasının başçısı</li>
+        </ul>
+    </div>
 
-    <h4>Əsas nümayəndələr:</h4>
+    <div class="person-card">
+        <h4>Fətəli xan Xoyski</h4>
+        <div class="years">1875–1920 · Xoy</div>
+        <div class="works-title">Fəaliyyəti</div>
+        <ul>
+            <li>Azərbaycan Xalq Cümhuriyyətinin ilk Baş naziri (1918–1919)</li>
+            <li>Xarici işlər naziri vəzifəsini eyni zamanda icra etmişdir</li>
+        </ul>
+    </div>
 
-    <ul>
-        <li>Məhəmməd Əmin Rəsulzadə</li>
-        <li>Fətəli xan Xoyski</li>
-        <li>Əlimərdan bəy Topçubaşov</li>
-        <li>Nəsib bəy Yusifbəyli</li>
-    </ul>
+    <div class="person-card">
+        <h4>Əlimərdan bəy Topçubaşov</h4>
+        <div class="years">1863–1934 · Şamaxı</div>
+        <div class="works-title">Fəaliyyəti</div>
+        <ul>
+            <li>Azərbaycan Parlamentinin sədri</li>
+            <li>Paris Sülh Konfransında Azərbaycan nümayəndə heyətinin rəhbəri (1919)</li>
+            <li>"Kaspi" qəzetinin redaktoru</li>
+        </ul>
+    </div>
 
     <h3>Cümhuriyyətin Nailiyyətləri</h3>
-
     <div class="cards">
-
         <div class="card">
-            <h4>Parlament</h4>
-            <p>Şərqdə ilk demokratik parlament yaradıldı.</p>
+            <h4>Parliament</h4>
+            <p>Şərqdə ilk demokratik parliament yaradıldı — 120 deputat, çoxpartiyalı sistem.</p>
         </div>
-
         <div class="card">
             <h4>Qadın Hüquqları</h4>
-            <p>Qadınlara seçki hüququ verildi.</p>
+            <p>Qadınlara seçki hüququ verildi — dünyanın ilk ölkələrindən biri olaraq.</p>
         </div>
-
         <div class="card">
             <h4>Təhsil</h4>
-            <p>Bakı Dövlət Universiteti yaradıldı.</p>
+            <p>Bakı Dövlət Universiteti 1919-cu ildə yaradıldı.</p>
         </div>
-
         <div class="card">
             <h4>Ordu</h4>
             <p>Milli ordu formalaşdırıldı.</p>
         </div>
-
     </div>
 
     <h3>Beynəlxalq Münasibətlər</h3>
-
     <p>
         Azərbaycan Paris Sülh Konfransında tanınmaq üçün diplomatik fəaliyyət aparmışdır.
-    </p>
-
-    <p>
         ABŞ prezidenti Vudro Vilson Azərbaycan nümayəndələri haqqında müsbət fikirlər bildirmişdir.
     </p>
 
     <h3>Süqut</h3>
-
     <p>
         1920-ci ildə XI Qırmızı Ordunun işğalı nəticəsində Azərbaycan Xalq Cümhuriyyəti süqut etdi.
     </p>
 </section>
 
 <!-- ========================= -->
-<!-- AZƏRBAYCAN SOVET DÖVRÜ -->
+<!-- 7. SOVET DÖVRÜ -->
 <!-- ========================= -->
-
 <section id="sovet">
     <h2>7. Azərbaycan Mədəniyyəti Sovet Dövründə</h2>
 
@@ -363,13 +892,10 @@
     </p>
 
     <h3>28 Aprel İşğalı</h3>
-
     <p>
         Azərbaycan parlamenti bolşevik ordusunun təzyiqi altında hakimiyyəti kommunistlərə təhvil verdi.
     </p>
-
-    <h4>Verilən əsas şərtlər:</h4>
-
+    <h4>Verilən əsas şərtlər (pozuldu):</h4>
     <ul>
         <li>Azərbaycanın istiqlaliyyətinin qorunması</li>
         <li>Milli ordunun saxlanılması</li>
@@ -377,87 +903,72 @@
         <li>Parlament üzvlərinin toxunulmazlığı</li>
     </ul>
 
-    <p>
-        Lakin bu şərtlərin əksəriyyəti sonradan pozuldu.
-    </p>
-
-    <h3>Azərbaycan SSR-in Yaradılması</h3>
-
-    <p>
-        28 aprel 1920-ci ildə Azərbaycan Sovet Sosialist Respublikası elan edildi.
-    </p>
-
-    <ul>
-        <li>Nəriman Nərimanov rəhbərliyə gətirildi</li>
-        <li>1922-ci ildə SSRİ yaradıldı</li>
-        <li>Azərbaycan SSR SSRİ-nin tərkibinə daxil oldu</li>
-    </ul>
-
-    <h3>Ruslaşdırma Siyasəti</h3>
-
-    <p>
-        Sovet dövründə rus dili hakim mövqeyə gətirilmişdi.
-    </p>
-
-    <ul>
-        <li>Rus dili əsas idarəetmə dili idi</li>
-        <li>Məktəblərdə rus dili geniş yayılmışdı</li>
-        <li>Mədəniyyət sovet ideologiyasına uyğunlaşdırılırdı</li>
-    </ul>
-
     <h3>Əlifba İslahatları</h3>
-
     <div class="timeline">
-
         <div class="timeline-item">
             <h4>1929</h4>
             <p>Ərəb əlifbasından latın qrafikasına keçid</p>
         </div>
-
         <div class="timeline-item">
             <h4>1939</h4>
             <p>Latın əlifbasından kiril qrafikasına keçid</p>
         </div>
-
         <div class="timeline-item">
             <h4>1992</h4>
             <p>Yenidən latın əlifbasına keçid</p>
         </div>
-
     </div>
 
-    <h3>Mədəni İnqilab</h3>
+    <h3>Repressiyalar — 1937-ci il qurbanları</h3>
 
-    <p>
-        Sovet hökuməti savadsızlığın aradan qaldırılması üçün geniş kampaniyalar aparırdı.
-    </p>
+    <div class="person-card">
+        <h4>Hüseyn Cavid</h4>
+        <div class="years">1882–1941 · Naxçıvan</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Şeyx Sənan"</strong> (1914) — Azərbaycan ədəbiyyatında ilk mənzum faciə</li>
+            <li><strong>"İblis"</strong> (1918) — fəlsəfi dram</li>
+            <li><strong>"Ana"</strong> (1918) — mənzum dram</li>
+            <li><strong>"Afət"</strong> (1922) — romantik dram</li>
+            <li><strong>"Uçurum"</strong> (1923) — sosial dram</li>
+            <li><strong>"Topal Teymur"</strong> (1925) — tarixi dram</li>
+            <li><strong>"Xəyyam"</strong> (1935) — tarixi-fəlsəfi dram</li>
+            <li><strong>"Peyğəmbər"</strong> — yarımçıq qalmış tarixi dram</li>
+            <li>Lirik şeir divanları: "Keçmiş günlər" (1913)</li>
+        </ul>
+        <p><em>1937-ci ildə həbs edilmiş, 1941-ci ildə Sibirya sürgününde həlak olmuşdur. Azərbaycan romantik dramaturgiyasının banisidir.</em></p>
+    </div>
 
-    <ul>
-        <li>Məktəblərin sayı artırıldı</li>
-        <li>Kütləvi təhsil sistemi yaradıldı</li>
-        <li>Yeni teatr və kitabxanalar açıldı</li>
-    </ul>
+    <div class="person-card">
+        <h4>Mikayıl Müşfiq</h4>
+        <div class="years">1908–1938 · Bakı</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Oxu, tar, oxu!"</strong> — məşhur şeir</li>
+            <li><strong>"Azərbaycan"</strong>, <strong>"Susma, dilim"</strong> — vətənpərvər şeirlər</li>
+            <li><strong>"Simurq"</strong> — poema</li>
+            <li>Şeir kitabları: "Ömrüm", "Sənin üçün"</li>
+        </ul>
+        <p><em>1937-ci ildə həbs edilmiş, 1938-ci ildə güllələnmişdir. Azərbaycan lirikasının ən nəfis səslərindən biri idi.</em></p>
+    </div>
 
-    <h3>Repressiyalar</h3>
-
-    <p>
-        1937-ci il repressiyaları zamanı yüzlərlə Azərbaycan ziyalısı həbs edildi və ya öldürüldü.
-    </p>
-
-    <h4>Repressiya qurbanları:</h4>
-
-    <ul>
-        <li>Hüseyn Cavid</li>
-        <li>Mikayıl Müşfiq</li>
-        <li>Əhməd Cavad</li>
-    </ul>
+    <div class="person-card">
+        <h4>Əhməd Cavad</h4>
+        <div class="years">1892–1937 · Ağstafa</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>Azərbaycan Xalq Cümhuriyyəti himninin</strong> sözlərinin müəllifi (1918)</li>
+            <li>Üzeyir Hacıbəyovun "Azərbaycan" kantatasının sözləri</li>
+            <li>Şeir kitabları: "Çiçəklər solmasın"</li>
+            <li>Romantik ruhlu lirik şeirlər, uşaq şeirləri</li>
+        </ul>
+        <p><em>1937-ci ildə güllələnmişdir.</em></p>
+    </div>
 
     <h3>Teatr və Kino</h3>
-
     <p>
         Sovet dövründə teatr və kino inkişaf etsə də, güclü senzura mövcud idi.
     </p>
-
     <ul>
         <li>Azərbaycanfilm kinostudiyası yaradıldı</li>
         <li>Milli teatr inkişaf etdi</li>
@@ -465,48 +976,31 @@
     </ul>
 
     <h3>II Dünya Müharibəsi</h3>
-
     <p>
-        Bakı nefti SSRİ üçün strateji əhəmiyyət daşıyırdı.
-    </p>
-
-    <p>
-        Minlərlə azərbaycanlı cəbhədə döyüşmüşdür.
+        Bakı nefti SSRİ üçün strateji əhəmiyyət daşıyırdı. Minlərlə azərbaycanlı cəbhədə döyüşmüşdür.
     </p>
 
     <h3>Perestroyka Dövrü</h3>
-
-    <p>
-        1980-ci illərin sonlarında SSRİ-də yenidənqurma siyasəti başladı.
-    </p>
-
     <ul>
         <li>Milli azadlıq hərəkatı gücləndi</li>
         <li>Qarabağ problemi ortaya çıxdı</li>
-        <li>20 Yanvar faciəsi baş verdi</li>
+        <li>20 Yanvar faciəsi baş verdi (1990)</li>
     </ul>
 </section>
 
 <!-- ========================= -->
-<!-- AZƏRBAYCAN İLKLƏRİ -->
+<!-- 8. İLKLƏR -->
 <!-- ========================= -->
-
 <section id="ilkler">
     <h2>8. Azərbaycan İlkləri</h2>
 
     <p>
         Azərbaycan Şərqdə və müsəlman dünyasında bir çox sahədə ilkə imza atmış ölkələrdən biridir.
-        Bu ilklər siyasət, mədəniyyət, təhsil, musiqi, kino, neft sənayesi və qadın hüquqları kimi
-        sahələri əhatə edir.
     </p>
 
     <div class="subsection">
         <h3>İlk Demokratik Respublika</h3>
-
-        <p>
-            28 may 1918-ci ildə qurulan Azərbaycan Xalq Cümhuriyyəti müsəlman Şərqində ilk parlamentli demokratik respublika olmuşdur.
-        </p>
-
+        <p>28 may 1918-ci ildə qurulan Azərbaycan Xalq Cümhuriyyəti müsəlman Şərqində ilk parlamentli demokratik respublika olmuşdur.</p>
         <ul>
             <li>Şərqdə ilk parlamentli respublika</li>
             <li>Qadınlara seçki hüququ verən ilk müsəlman ölkəsi</li>
@@ -516,207 +1010,120 @@
 
     <div class="subsection">
         <h3>İlk Neft Quyusu</h3>
-
-        <p>
-            1846-cı ildə Bakının Bibiheybət ərazisində dünyada ilk sənaye üsulu ilə neft quyusu qazılmışdır.
-        </p>
-
-        <p>
-            Bu hadisə müasir neft sənayesinin başlanğıcı hesab edilir.
-        </p>
+        <p>1846-cı ildə Bakının Bibiheybət ərazisində dünyada ilk sənaye üsulu ilə neft quyusu qazılmışdır. Bu hadisə müasir neft sənayesinin başlanğıcı hesab edilir.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Opera</h3>
-
-        <p>
-            Üzeyir Hacıbəyovun “Leyli və Məcnun” əsəri 1908-ci ildə səhnəyə qoyulmuş və Şərqdə ilk opera hesab olunur.
-        </p>
+        <h3>İlk Opera — Üzeyir Hacıbəyov, "Leyli və Məcnun" (1908)</h3>
+        <p>Şərqdə ilk opera. Hacı Zeynalabdin Tağıyevin teatrında tamaşaya qoyulmuşdur.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Operetta</h3>
-
-        <p>
-            “Arşın mal alan” və “O olmasın, bu olsun” Şərq operetta sənətinin əsasını qoymuşdur.
-        </p>
+        <h3>İlk Operetta — Üzeyir Hacıbəyov</h3>
+        <p>"Arşın mal alan" (1913) və "O olmasın, bu olsun" (1910) Şərq operetta sənətinin əsasını qoymuşdur.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Kino Çəkilişi</h3>
-
-        <p>
-            1898-ci ildə Aleksandr Mişon tərəfindən Bakıda ilk kino çəkilişləri aparılmışdır.
-        </p>
-
+        <h3>İlk Kino Çəkilişi (1898)</h3>
+        <p>Fransız fotoqraf Aleksandr Mişon Bakıda ilk film çəkilişlərini həyata keçirmişdir. Filmlər Paris sərgisində nümayiş etdirilmişdir.</p>
         <ul>
-            <li>Bibiheybət neft fontanı</li>
-            <li>Qafqaz rəqsləri</li>
-            <li>Bakı həyatı</li>
+            <li>Bibiheybətdə neft fontanı yanğını</li>
+            <li>Qafqaz xalq rəqsləri</li>
         </ul>
     </div>
 
     <div class="subsection">
-        <h3>İlk Milli Teatr</h3>
-
-        <p>
-            1873-cü ildə Mirzə Fətəli Axundzadənin əsəri əsasında ilk milli teatr tamaşası göstərilmişdir.
-        </p>
+        <h3>İlk Milli Teatr Tamaşası (1873)</h3>
+        <p>Mirzə Fətəli Axundzadənin əsəri əsasında Həsən bəy Zərdabinin təşkilatçılığı ilə Bakıda ilk milli teatr tamaşası göstərilmişdir.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Universitet</h3>
-
-        <p>
-            Bakı Dövlət Universiteti 1919-cu ildə yaradılmışdır.
-        </p>
-
-        <p>
-            Bu universitet Azərbaycanda ali təhsilin inkişafında mühüm rol oynamışdır.
-        </p>
+        <h3>İlk Azərbaycan Qəzeti (1875)</h3>
+        <p>"Əkinçi" qəzeti Həsən bəy Zərdabi tərəfindən nəşr edilmişdir. Milli mətbuatın əsasını qoymuşdur.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Azərbaycan Qəzeti</h3>
-
-        <p>
-            “Əkinçi” qəzeti 1875-ci ildə Həsən bəy Zərdabi tərəfindən nəşr edilmişdir.
-        </p>
-
-        <p>
-            Bu qəzet milli mətbuatın əsasını qoymuşdur.
-        </p>
+        <h3>İlk Azərbaycan Universiteti (1919)</h3>
+        <p>Bakı Dövlət Universiteti Azərbaycan Xalq Cümhuriyyəti dövründə 1919-cu ildə yaradılmışdır.</p>
     </div>
 
     <div class="subsection">
-        <h3>İlk Qadın Şərqşünas və Bəstəkarlar</h3>
-
+        <h3>Dünyaya tanınan Azərbaycanlılar</h3>
         <ul>
-            <li>Şəfiqə Axundova – Şərqdə ilk qadın opera bəstəkarı</li>
-            <li>Lütfi Zadə – qeyri-səlis məntiq nəzəriyyəsinin yaradıcısı</li>
-            <li>Validə Tutayuq – ilk azərbaycanlı qadın təyyarəçi</li>
+            <li><strong>Şəfiqə Axundova</strong> (1924–2014) — Şərqdə ilk qadın opera bəstəkarı; "Gülüş" operası (1965)</li>
+            <li><strong>Lütfi Zadə</strong> (1921–2017) — "qeyri-səlis məntiq" (fuzzy logic) nəzəriyyəsinin yaradıcısı</li>
+            <li><strong>Validə Tutayuq</strong> (1909–1986) — Azərbaycanın ilk qadın pilotu</li>
         </ul>
     </div>
 
     <div class="subsection">
         <h3>İlk Peyk</h3>
-
-        <p>
-            Azərbaycanın ilk telekommunikasiya peyki “Azerspace-1” 2013-cü ildə orbitə buraxılmışdır.
-        </p>
+        <p>Azərbaycanın ilk telekommunikasiya peyki "Azerspace-1" 2013-cü ildə orbitə buraxılmışdır.</p>
     </div>
 </section>
 
-<!-- ƏDƏBİ DİL SECTION -->
-
+<!-- ========================= -->
+<!-- 9. ƏDƏBİ DİL -->
+<!-- ========================= -->
 <section id="dil">
     <h2>9. Azərbaycan Ədəbi Dili</h2>
 
     <p>
         Azərbaycan ədəbi dili xalqın tarixini, mədəniyyətini, düşüncə tərzini və milli kimliyini əks etdirən əsas mənəvi sütunlardan biridir.
-        Ədəbi dil əsrlər boyu müxtəlif tarixi mərhələlər keçərək formalaşmış və zənginləşmişdir.
     </p>
 
     <h3>Ədəbi Dilin İnkişaf Mərhələləri</h3>
 
     <div class="subsection">
         <h4>1. Qədim Dövr</h4>
-
-        <p>
-            Azərbaycan dilinin kökləri qədim türk tayfalarının dillərinə dayanır.
-            Bu dövrdə dil əsasən şifahi xalq yaradıcılığı formasında inkişaf etmişdir.
-        </p>
-
+        <p>Azərbaycan dilinin kökləri qədim türk tayfalarının dillərinə dayanır. Bu dövrdə dil əsasən şifahi xalq yaradıcılığı formasında inkişaf etmişdir.</p>
         <ul>
             <li>Dastanlar</li>
             <li>Atalar sözləri</li>
             <li>Bayatılar</li>
             <li>Mifoloji mətnlər</li>
         </ul>
-
-        <p>
-            “Kitabi-Dədə Qorqud” qədim Azərbaycan türkcəsinin ən mühüm nümunələrindən hesab olunur.
-        </p>
+        <p>"Kitabi-Dədə Qorqud" qədim Azərbaycan türkcəsinin ən mühüm nümunəsi hesab olunur.</p>
     </div>
 
     <div class="subsection">
         <h4>2. Orta Dövr (XIII–XVII əsrlər)</h4>
+        <p>Bu dövrdə Azərbaycan ədəbi dili müstəqil ədəbi sistem kimi formalaşmağa başlamışdır.</p>
 
-        <p>
-            Bu dövrdə Azərbaycan ədəbi dili müstəqil ədəbi sistem kimi formalaşmağa başlamışdır.
-            Klassik poeziya və saray ədəbiyyatı inkişaf etmişdir.
-        </p>
+        <div class="person-card">
+            <h4>İmadəddin Nəsimi</h4>
+            <div class="years">1369/70–1417 · Şamaxı</div>
+            <div class="works-title">Əsas əsərləri</div>
+            <ul>
+                <li><strong>Azərbaycanca Divan</strong> — əsas lirik irs; hürufizm ideyaları</li>
+                <li><strong>Farsca Divan</strong> — şeirlər toplusu</li>
+                <li><strong>Ərəbcə Divan</strong></li>
+                <li>Məşhur qəzəlləri: "Sığmazam", "Mən bu cahana sığmazam"</li>
+            </ul>
+            <p><em>Hürufizmin ən böyük şairi. Həlləc Mənsurdan sonra ən böyük mistik şairlərdən biri sayılır. Hələb şəhərindən diri-diri dərisi soyulmuşdur.</em></p>
+        </div>
 
-        <h5>Əsas nümayəndələr:</h5>
-
-        <ul>
-            <li>İmadəddin Nəsimi</li>
-            <li>Məhəmməd Füzuli</li>
-            <li>Qazi Bürhanəddin</li>
-            <li>Şah İsmayıl Xətai</li>
-        </ul>
-
-        <h5>Şah İsmayıl Xətainin rolu</h5>
-
-        <p>
-            Şah İsmayıl Xətai dövlət başçısı olmasına baxmayaraq ana dilində şeirlər yazmış və Azərbaycan türkcəsinin inkişafına böyük təkan vermişdir.
-        </p>
-
-        <blockquote>
-            “Ana dilində yazan sənətkarlar himayə olunurdu və hökmdarın ana dilində yazdığını görən şairlər Azərbaycan dilində yazmağa xüsusi cəhd göstərirdilər.”
-            — Tofiq Hacıyev
-        </blockquote>
-
-        <p>
-            XV əsr Azərbaycan ədəbi dili ümumxalq dilinə əsaslanırdı və canlı danışıq dilinə yaxın idi.
-        </p>
+        <div class="person-card">
+            <h4>Şah İsmayıl Xətai</h4>
+            <div class="years">1487–1524 · Ərdəbil</div>
+            <div class="works-title">Əsas əsərləri</div>
+            <ul>
+                <li><strong>Azərbaycanca Divan</strong> — lirik şeirlər, qəzəllər</li>
+                <li><strong>"Dəhnamə"</strong> — 10 məktubdan ibarət məsnəvi poema</li>
+                <li><strong>"Nəsihətnamə"</strong> — etik-didaktik əsər</li>
+            </ul>
+            <p><em>Səfəvilər dövlətinin qurucusu. Dövlət başçısı olaraq ana dilində yazan ilk şahlardan biri.</em></p>
+        </div>
 
         <h5>Ərəb və fars dillərinin təsiri</h5>
-
-        <p>
-            Saray və klassik ədəbiyyat dilində ərəb və fars dillərinin təsiri güclü olmuşdur.
-            Xüsusilə sintaktik quruluşda dəyişikliklər yaranmışdır.
-        </p>
-
-        <p>
-            Məsələn:
-        </p>
-
-        <ul>
-            <li>fəsli-gül → gül fəsli</li>
-            <li>daxili-əhli-kamal → kamal əhlinə daxil</li>
-        </ul>
-
-        <p>
-            Klassik dövrdə budaq cümlələr də inkişaf etmişdir:
-        </p>
-
-        <blockquote>
-            “Bilməz ki, həqdən müsəvvər oldu.”
-        </blockquote>
+        <p>Saray ədəbiyyatında ərəb-fars sintaksisin təsiri güclü olmuşdur: "fəsli-gül → gül fəsli" kimi strukturlar işlənmişdir.</p>
     </div>
 
     <div class="subsection">
         <h4>3. Yeni Dövr (XVIII–XIX əsrlər)</h4>
-
-        <p>
-            Maarifçilik hərəkatı ilə birlikdə dilin sadələşdirilməsi və xalq dilinə yaxınlaşdırılması ideyası meydana çıxmışdır.
-        </p>
-
-        <h5>Maarifçi ziyalılar:</h5>
-
-        <ul>
-            <li>Mirzə Fətəli Axundzadə</li>
-            <li>Abbasqulu ağa Bakıxanov</li>
-            <li>Həsən bəy Zərdabi</li>
-        </ul>
-
-        <p>
-            Bu dövrdə mətbuatın inkişafı ədəbi dilin formalaşmasına böyük təsir göstərmişdir.
-        </p>
+        <p>Maarifçilik hərəkatı ilə birlikdə dilin sadələşdirilməsi ideyası meydana çıxmışdır.</p>
 
         <h5>Ədəbi məktəblər</h5>
-
         <ul>
             <li>Şamaxı ədəbi mühiti</li>
             <li>Qarabağ ədəbi məktəbi</li>
@@ -727,52 +1134,31 @@
     <div class="subsection">
         <h4>4. Müasir Dövr (XX əsr və sonrası)</h4>
 
-        <p>
-            Müasir dövrdə Azərbaycan dili dövlət dili statusu qazanmış və müstəqil inkişaf mərhələsinə daxil olmuşdur.
-        </p>
-
         <h5>Əlifba dəyişiklikləri</h5>
-
         <ul>
-            <li>Ərəb əlifbası</li>
-            <li>1920-ci illər – Latın əlifbası</li>
-            <li>1939 – Kiril əlifbası</li>
-            <li>1992 – Yenidən latın qrafikası</li>
+            <li>Ərəb əlifbası (VII əsrdən)</li>
+            <li>1929 — Latın əlifbası</li>
+            <li>1939 — Kiril əlifbası</li>
+            <li>1992 — Yenidən latın qrafikası</li>
         </ul>
 
         <h5>Dövlət dili statusu</h5>
-
-        <p>
-            Azərbaycan dili 1978 və 1995-ci il Konstitusiyalarında dövlət dili kimi təsbit edilmişdir.
-        </p>
-
-        <h5>Müasir inkişaf istiqamətləri</h5>
-
-        <ul>
-            <li>Terminologiyanın inkişafı</li>
-            <li>Rəqəmsal dil texnologiyaları</li>
-            <li>Elmi və akademik dil</li>
-            <li>Media və televiziya dili</li>
-        </ul>
+        <p>Azərbaycan dili 1978 və 1995-ci il Konstitusiyalarında dövlət dili kimi təsbit edilmişdir.</p>
     </div>
 
     <div class="subsection">
         <h4>Dialekt və Şivələr</h4>
-
-        <p>
-            Azərbaycan dili müxtəlif dialekt və şivələrə malikdir. Bu dialektlər ədəbi dilin zənginləşməsində mühüm rol oynamışdır.
-        </p>
-
         <ul>
-            <li><strong>Qərb dialekti</strong> – Qarabağ, Gəncə, Qazax</li>
-            <li><strong>Şərq dialekti</strong> – Bakı, Şamaxı, Quba</li>
-            <li><strong>Cənub dialekti</strong> – Təbriz, Ərdəbil</li>
+            <li><strong>Qərb dialekti</strong> — Qarabağ, Gəncə, Qazax</li>
+            <li><strong>Şərq dialekti</strong> — Bakı, Şamaxı, Quba</li>
+            <li><strong>Cənub dialekti</strong> — Təbriz, Ərdəbil</li>
         </ul>
     </div>
 </section>
 
-<!-- AZƏRBAYCAN MƏTBƏXİ SECTION -->
-
+<!-- ========================= -->
+<!-- 10. MƏTBƏX -->
+<!-- ========================= -->
 <section id="metbex">
     <h2>10. Azərbaycan Mətbəxi</h2>
 
@@ -782,11 +1168,10 @@
     </p>
 
     <h3>Azərbaycan Mətbəxinin Xüsusiyyətləri</h3>
-
     <ul>
         <li>Müxtəlif ət yeməkləri</li>
         <li>Ədviyyatlardan geniş istifadə</li>
-        <li>Plov mədəniyyəti</li>
+        <li>Plov mədəniyyəti (200-dən çox növ)</li>
         <li>Xəmir yeməklərinin zənginliyi</li>
         <li>Təbii məhsulların istifadəsi</li>
         <li>Mövsümi yeməklər</li>
@@ -795,14 +1180,9 @@
     <h3>Milli Yeməklər</h3>
 
     <div class="food-grid">
-
         <div class="food-card">
             <h4>Plov</h4>
-            <p>
-                Azərbaycan mətbəxinin şah yeməyi hesab olunur.
-                200-dən çox plov növü mövcuddur.
-            </p>
-
+            <p>Azərbaycan mətbəxinin şah yeməyi. 200-dən çox plov növü mövcuddur.</p>
             <ul>
                 <li>Şah plov</li>
                 <li>Səbzi plov</li>
@@ -810,67 +1190,43 @@
                 <li>Südlü plov</li>
             </ul>
         </div>
-
         <div class="food-card">
             <h4>Dolma</h4>
-            <p>
-                Üzüm yarpağı və ya tərəvəz içərisində hazırlanan milli yeməkdir.
-            </p>
-
+            <p>Üzüm yarpağı və ya tərəvəz içərisində hazırlanan milli yemək. UNESCO siyahısındadır.</p>
             <ul>
                 <li>Yarpaq dolması</li>
                 <li>Badımcan dolması</li>
                 <li>Kələm dolması</li>
             </ul>
         </div>
-
         <div class="food-card">
             <h4>Düşbərə</h4>
-
-            <p>
-                Xırda xəmir parçaları içərisində ətlə hazırlanan şorba yeməyidir.
-            </p>
+            <p>Xırda xəmir parçaları içərisində ətlə hazırlanan şorba yeməyidir.</p>
         </div>
-
         <div class="food-card">
             <h4>Piti</h4>
-
-            <p>
-                Ənənəvi gil qabda bişirilən Şəki yeməyidir.
-            </p>
+            <p>Ənənəvi gil qabda bişirilən Şəki yeməyidir. Quzu əti, noxud, şabalıd.</p>
         </div>
-
         <div class="food-card">
             <h4>Qutab</h4>
-
-            <p>
-                İçlikli nazik xəmir yeməyidir.
-            </p>
-
+            <p>İçlikli nazik xəmir yeməyidir.</p>
             <ul>
                 <li>Göyərti qutabı</li>
                 <li>Ət qutabı</li>
                 <li>Balqabaq qutabı</li>
             </ul>
         </div>
-
     </div>
 
     <h3>Şirniyyatlar</h3>
-
     <ul>
-        <li>Paxlava</li>
-        <li>Şəkərbura</li>
-        <li>Qoğal</li>
+        <li>Paxlava — Novruz şirniyyatı</li>
+        <li>Şəkərbura — Novruz şirniyyatı</li>
+        <li>Qoğal — Novruz şirniyyatı</li>
         <li>Badambura</li>
     </ul>
 
-    <p>
-        Novruz bayramında bu şirniyyatların xüsusi yeri vardır.
-    </p>
-
     <h3>Regionlara görə Mətbəx</h3>
-
     <ul>
         <li><strong>Şəki:</strong> piti, halva</li>
         <li><strong>Quba:</strong> xəngəl</li>
@@ -880,159 +1236,95 @@
     </ul>
 
     <h3>Çay Mədəniyyəti</h3>
-
     <p>
-        Azərbaycanda çay xüsusi mədəniyyət hesab olunur.
-        Çay armudu stəkanda təqdim edilir və mürəbbə ilə içilir.
+        Azərbaycanda çay xüsusi mədəniyyət hesab olunur. Çay armudu stəkanda təqdim edilir və mürəbbə ilə içilir.
     </p>
 
     <h3>UNESCO Siyahısına Daxil Olan Nümunələr</h3>
-
     <ul>
-        <li>Dolma ənənəsi</li>
+        <li>Dolma ənənəsi (2017)</li>
         <li>Lavaş hazırlanması</li>
         <li>Çay mədəniyyəti</li>
     </ul>
 </section>
 
-<!-- AZƏRBAYCAN TEATRI SECTION -->
-
+<!-- ========================= -->
+<!-- 11. TEATR -->
+<!-- ========================= -->
 <section id="teatr">
     <h2>11. Azərbaycan Teatrı</h2>
 
     <p>
-        “Teatr” sözü qədim yunan dilindəki “theatron” — “baxış yeri” sözündən götürülmüşdür.
-        Teatr canlı aktyor ifası vasitəsilə hadisələrin tamaşaçılar qarşısında təqdim olunduğu kollektiv sənət növüdür.
+        "Teatr" sözü qədim yunan dilindəki "theatron" — "baxış yeri" sözündən götürülmüşdür.
     </p>
 
     <blockquote>
-        “Bütün dünya bir səhnədir...”
-        — Uilyam Şekspir
+        "Bütün dünya bir səhnədir..." — Uilyam Şekspir
     </blockquote>
-
     <blockquote>
-        “Bir milləti formalaşdırmaq üçün əvvəlcə onun teatrı yaradılmalıdır.”
-        — Höte
+        "Bir milləti formalaşdırmaq üçün əvvəlcə onun teatrı yaradılmalıdır." — Höte
     </blockquote>
-
-    <h3>Dördüncü Divar</h3>
-
-    <p>
-        Teatrda görünməz sərhəd olan “dördüncü divar” anlayışı tamaşaçı ilə səhnə arasındakı xətti ifadə edir.
-        Aktyorun tamaşaçıya birbaşa müraciəti “dördüncü divarın sındırılması” adlanır.
-    </p>
-
-    <h3>Teatrın Mənşəyi</h3>
-
-    <p>
-        Teatrın ilkin elementləri qədim insanların ov səhnələrini canlandırması,
-        jestlər və mimikalar vasitəsilə ünsiyyət qurması ilə əlaqələndirilir.
-    </p>
 
     <h3>Azərbaycan Teatrının İnkişaf Mərhələləri</h3>
 
     <div class="subsection">
         <h4>1. Ənənəvi Xalq Teatrı</h4>
-
-        <p>
-            Azərbaycan teatrının kökləri xalq oyunları və mərasim tamaşalarına dayanır.
-        </p>
-
-        <h5>Qodu-Qodu Oyunu</h5>
-
-        <p>
-            Günəşin çıxmasını sürətləndirmək məqsədilə oynanılan mərasim oyunudur.
-        </p>
-
-        <blockquote>
-            Qodu-qodunu gördünmü?<br>
-            Qoduya salam verdinmi?<br>
-            Qodu burdan keçəndə<br>
-            Qırmızı gün gördünmü?
-        </blockquote>
-
-        <h5>Kövsər Oyunu</h5>
-
-        <p>
-            Qışı yola salmaq üçün keçirilən xalq tamaşası idi.
-            Təlxək obrazı mühüm yer tuturdu.
-        </p>
-
-        <h5>Padşah Oyunu</h5>
-
-        <p>
-            Xalq arasında satirik məzmunlu tamaşa növü olmuşdur.
-        </p>
-
-        <h5>Novruz Tamaşaları</h5>
-
-        <p>
-            Kosa, Keçəl və digər obrazlarla Novruz oyunları xalq teatrının əsas hissəsi idi.
-        </p>
-
-        <h5>Şəbih Tamaşaları</h5>
-
-        <p>
-            Məhərrəm ayında Kərbəla hadisələrinin dramatik təqdimatı idi.
-        </p>
-    </div>
-
-    <div class="subsection">
-        <h4>2. Avropa Üslublu Teatr</h4>
-
-        <p>
-            XIX əsrin ikinci yarısından etibarən Azərbaycanda peşəkar Avropa tipli teatr yaranmağa başladı.
-        </p>
-
-        <h5>1873-cü il</h5>
-
-        <p>
-            Bakı Realnı Məktəbinin tələbələri Mirzə Fətəli Axundzadənin əsərini səhnələşdirdilər.
-            Bu hadisə Azərbaycan milli teatrının yaranma tarixi hesab olunur.
-        </p>
-
-        <h5>Mirzə Fətəli Axundzadə</h5>
-
-        <p>
-            Azərbaycan dramaturgiyasının banisi sayılır.
-            Komediya janrını inkişaf etdirmişdir.
-        </p>
-
-        <h5>Cəlil Məmmədquluzadə</h5>
-
-        <p>
-            Satirik teatrın və realist səhnə sənətinin inkişafına təsir göstərmişdir.
-        </p>
-
-        <h5>Hüseyn Cavid</h5>
-
-        <p>
-            Romantik dramaturgiyanın ən böyük nümayəndələrindəndir.
-        </p>
-    </div>
-
-    <div class="subsection">
-        <h4>Sovet Dövründə Teatr</h4>
-
-        <p>
-            Sovet dövründə teatr dövlət tərəfindən maliyyələşdirilsə də senzura mövcud idi.
-        </p>
-
         <ul>
-            <li>Dövlət teatrlarının yaranması</li>
-            <li>Aktyor məktəbinin inkişafı</li>
-            <li>Yeni dramaturgiyanın formalaşması</li>
-            <li>İdeoloji tamaşalar</li>
+            <li><strong>Qodu-Qodu Oyunu</strong> — yağış, günəş üçün mərasim oyunu</li>
+            <li><strong>Kövsər Oyunu</strong> — qışı yola salmaq üçün xalq tamaşası; Təlxək obrazı</li>
+            <li><strong>Padşah Oyunu</strong> — satirik xalq tamaşası</li>
+            <li><strong>Novruz Tamaşaları</strong> — Kosa, Keçəl obrazları</li>
+            <li><strong>Şəbih Tamaşaları</strong> — Məhərrəm ayında Kərbəla hadisələrinin dramatik təqdimatı</li>
         </ul>
     </div>
 
     <div class="subsection">
+        <h4>2. Avropa Üslublu Teatr — Peşəkar Dramaturqlar</h4>
+
+        <div class="person-card">
+            <h4>Mirzə Fətəli Axundzadə</h4>
+            <div class="years">1812–1878 · Şəki</div>
+            <div class="works-title">Dram əsərləri (1850–1855)</div>
+            <ul>
+                <li><strong>"Hacı Qara"</strong> — xəsislik haqqında komediya</li>
+                <li><strong>"Müsyö Jordan və Dərviş Məstəli Şah"</strong></li>
+                <li><strong>"Xırs quldurbasan"</strong></li>
+                <li><strong>"Lənkəran xanının vəziri"</strong></li>
+                <li><strong>"Mürafiə vəkillərinin hekayəti"</strong></li>
+                <li><strong>"Həkim Nuxəvi"</strong></li>
+            </ul>
+            <p><em>Azərbaycan dramaturgiyasının banisi. 1873-cü ildə ilk milli teatr tamaşası onun əsəri əsasında oynanılmışdır.</em></p>
+        </div>
+
+        <div class="person-card">
+            <h4>Cəlil Məmmədquluzadə (Molla Nəsrəddin)</h4>
+            <div class="years">1869–1932 · Naxçıvan</div>
+            <div class="works-title">Əsas əsərləri</div>
+            <ul>
+                <li><strong>"Ölülər"</strong> (1909) — ən məşhur pyesi; cəhalət, fanatizm mövzusunda</li>
+                <li><strong>"Anamın kitabı"</strong> (1920) — dil mövzusunda dram</li>
+                <li><strong>"Dəli yığıncağı"</strong> — satirik komediya</li>
+                <li>"Molla Nəsrəddin" jurnalı (1906–1931) — satirik jurnal</li>
+                <li>Hekayələr: "Poçt qutusu", "İranda hürriyyət"</li>
+            </ul>
+        </div>
+
+        <div class="person-card">
+            <h4>Hüseyn Cavid</h4>
+            <div class="years">1882–1941 · Naxçıvan</div>
+            <div class="works-title">Əsas dram əsərləri</div>
+            <ul>
+                <li><strong>"Şeyx Sənan"</strong> (1914) — Azərbaycan ədəbiyyatında ilk mənzum faciə</li>
+                <li><strong>"İblis"</strong> (1918) — fəlsəfi dram, İblisi insanın qarşısında höccətar edir</li>
+                <li><strong>"Ana"</strong> (1918) — mənzum dram</li>
+                <li><strong>"Topal Teymur"</strong> (1925) — tarixi dram</li>
+                <li><strong>"Xəyyam"</strong> (1935) — tarixi-fəlsəfi dram</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subsection">
         <h4>Müasir Azərbaycan Teatrı</h4>
-
-        <p>
-            Müasir dövrdə eksperimental teatr, müasir səhnə texnologiyaları və yeni aktyor məktəbləri inkişaf edir.
-        </p>
-
         <ul>
             <li>Akademik Milli Dram Teatrı</li>
             <li>Gənc Tamaşaçılar Teatrı</li>
@@ -1042,361 +1334,299 @@
     </div>
 </section>
 
-<!-- AZƏRBAYCAN MUSİQİSİ SECTION -->
-
+<!-- ========================= -->
+<!-- 12. MUSİQİ -->
+<!-- ========================= -->
 <section id="musiqi">
     <h2>12. Azərbaycan Musiqisi</h2>
 
     <p>
-        Azərbaycan musiqisi dünyanın ən qədim və zəngin musiqi mədəniyyətlərindən biridir.
-        Onun kökləri qədim türk inanclarına, xalq yaradıcılığına, mərasimlərə və Şərq musiqi ənənələrinə dayanır.
+        Azərbaycan musiqisi dünyanın ən qədim və zəngin musiqi mədəniyyətlərindən biridir. Onun kökləri qədim türk inanclarına, xalq yaradıcılığına, mərasimlərə və Şərq musiqi ənənələrinə dayanır.
     </p>
 
     <h3>Azərbaycan Musiqisinin İlkin Qaynaqları</h3>
 
     <div class="subsection">
         <h4>Qobustan və qədim musiqi mədəniyyəti</h4>
-
-        <p>
-            Azərbaycan musiqisinin tarixi qədim dövrlərə qədər gedib çıxır.
-            Qobustan qayalarında tapılmış rəsmlər qədim insanların musiqi və rəqs mədəniyyətini göstərir.
-        </p>
-
+        <p>Qobustan qayalarında tapılmış rəsmlər qədim insanların musiqi və rəqs mədəniyyətini göstərir. "Qaval daşı" qədim zərb musiqi aləti hesab olunur — daşa vurulduqda ritmik səslər yaranır.</p>
         <ul>
-            <li>“Yallı” rəqsi təsvirləri</li>
+            <li>"Yallı" rəqsi təsvirləri</li>
             <li>Qaval daşı</li>
             <li>Ov və mərasim səhnələri</li>
         </ul>
-
-        <p>
-            Qobustandakı “Qaval daşı” qədim zərb musiqi aləti hesab olunur.
-            Daşa vurulduqda ritmik səslər yaranır.
-        </p>
-    </div>
-
-    <div class="subsection">
-        <h4>Yallı rəqsi</h4>
-
-        <p>
-            “Yallı” Azərbaycan xalqının ən qədim kollektiv rəqslərindən biridir.
-            Bu rəqs birlik, həmrəylik və qəhrəmanlıq simvolu hesab olunur.
-        </p>
-
-        <p>
-            Qızılvəng və Gəncəçay hövzəsində tapılmış saxsı qablar üzərində də “Yallı” təsvirlərinə rast gəlinmişdir.
-        </p>
     </div>
 
     <div class="subsection">
         <h4>Kitabi-Dədə Qorqud və Qopuz</h4>
-
-        <p>
-            “Kitabi-Dədə Qorqud” dastanında musiqi mühüm yer tutur.
-            Ən əsas musiqi aləti isə qopuz hesab olunur.
-        </p>
-
-        <h5>Qopuz</h5>
-
-        <p>
-            Qopuz qədim türk musiqi alətidir və müqəddəs hesab olunurdu.
-        </p>
-
-        <p>
-            Dastanda göstərilir ki, qəhrəmanlardan biri düşməninin əlində qopuz gördükdə onu öldürməkdən çəkinir.
-            Bu isə musiqinin və sənətin müqəddəsliyini göstərir.
-        </p>
+        <p>Dastanda qopuz müqəddəs hesab olunur. Qəhrəmanlardan biri düşməninin əlindəki qopuzu görüb onu öldürməkdən çəkinir — musiqinin müqəddəsliyinin simvolu.</p>
     </div>
 
-    <h3>Azərbaycan Musiqi Nəzəriyyəsi</h3>
+    <h3>Azərbaycan Musiqi Nəzəriyyəçiləri</h3>
 
-    <div class="subsection">
+    <div class="person-card">
         <h4>Səfyəddin Ürməvi</h4>
-
-        <p>
-            XIII əsrdə yaşamış böyük Azərbaycan musiqi nəzəriyyəçisidir.
-            1216-cı ildə Urmiyada doğulmuşdur.
-        </p>
-
-        <p>
-            O, Şərq musiqisinin elmi əsaslarını yaradan alimlərdən hesab olunur.
-        </p>
-
-        <h5>“Kitab əl-Ədvar”</h5>
-
-        <p>
-            İbn Sinadan sonra musiqi haqqında yazılmış ilk böyük elmi əsərlərdən biridir.
-        </p>
-
-        <h5>12 muğam sistemi</h5>
-
+        <div class="years">1216–1294 · Urmiya</div>
+        <div class="works-title">Əsas əsərləri</div>
         <ul>
-            <li>Rast</li>
-            <li>Nəva</li>
-            <li>Üşşaq</li>
-            <li>İraq</li>
-            <li>İsfahan</li>
-            <li>Hicaz</li>
-            <li>Hüseyni</li>
-            <li>Zəngulə</li>
+            <li><strong>"Kitab əl-Ədvar"</strong> ("Dəstgahlar kitabı") — İbn Sinadan sonra musiqi haqqında yazılmış ən böyük elmi əsər; 12 muğam sistemi</li>
+            <li><strong>"Rəsalə əş-Şərəfiyyə"</strong> — Şərəf əd-Din Harun adına həsr edilmiş musiqi traktatı</li>
         </ul>
+        <p><em>XII muğam sistemi: Rast, Nəva, Üşşaq, İraq, İsfahan, Hicaz, Hüseyni, Zəngulə, Büzürk, Zirəfkənd, Rəhavi, Huseyni.</em></p>
     </div>
 
-    <div class="subsection">
+    <div class="person-card">
         <h4>Abdülqadir Marağayi</h4>
-
-        <p>
-            XIV əsrdə yaşamış böyük musiqi nəzəriyyəçisi və bəstəkardır.
-            Şərq musiqisinin inkişafına böyük təsir göstərmişdir.
-        </p>
+        <div class="years">1353–1435 · Marağa</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Cami əl-Ədvar"</strong> — musiqi nəzəriyyəsi, muğam sistemi</li>
+            <li><strong>"Maqasid əl-Ədvar"</strong> — musiqi məqsəd və məqamları</li>
+            <li><strong>"Fəvayd əl-Aşarə"</strong> — musiqi haqqında traktat</li>
+        </ul>
+        <p><em>Timur sarayında musiqi ustası olmuşdur. Şərq musiqisinin inkişafına dərin iz qoymuşdur.</em></p>
     </div>
 
     <blockquote>
-        “Yaxın Şərq musiqisində iki azərbaycanlı musiqi nəzəriyyəçisi aparıcı rol oynamışdır.”
-        — Üzeyir Hacıbəyov
+        "Yaxın Şərq musiqisində iki azərbaycanlı musiqi nəzəriyyəçisi aparıcı rol oynamışdır." — Üzeyir Hacıbəyov
     </blockquote>
 
-    <h3>Muğam</h3>
+    <h3>Muğam — 7 Əsas Muğam</h3>
 
     <p>
-        Muğam Azərbaycan milli musiqisinin zirvəsi hesab olunur.
-        O, improvizasiya və emosional ifa üzərində qurulmuş mürəkkəb musiqi janrıdır.
+        Muğam Azərbaycan milli musiqisinin zirvəsi hesab olunur. 2003-cü ildə UNESCO-nun qeyri-maddi mədəni irs siyahısına daxil edilmişdir. Azərbaycanda 7 əsas, 3 köməkçi muğam var.
     </p>
 
-    <ul>
-        <li>Rast</li>
-        <li>Şur</li>
-        <li>Segah</li>
-        <li>Çahargah</li>
-        <li>Bayatı-Şiraz</li>
-    </ul>
+    <div class="mugam-grid">
 
-    <p>
-        Azərbaycan muğamı UNESCO-nun qeyri-maddi mədəni irs siyahısına daxil edilmişdir.
-    </p>
+        <div class="mugam-card">
+            <h4>1. Rast</h4>
+            <p>Azərbaycan musiqisinin ən qədim və əsas muğamlarından biri. Rast dəstgahı ailəsinə Mahur-hindi, Orta Mahur, Bayatı-Qacar, Qatar, Dügah daxildir.</p>
+            <p>İlk şöbəsi: Mayeyi-Rast, Üşşaq, Vilayəti, Əraq, Dügah.</p>
+            <span class="mood">İşıqlı, mütəvazı</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>2. Şur</h4>
+            <p>Azərbaycanda ən çox yayılan muğamlardan biri. Şur dəstgahı ailəsinə Rahab, Şahnaz, Bayatı-Kürd, Dəşti daxildir. Aşıq mahnılarının çoxu Şur kökündədir.</p>
+            <p>Şöbələri: Mayə, Səlmək, Hacı Yuni, Şür-şahnaz, Busəlik, Bayatı-Qacar...</p>
+            <span class="mood">Lirik, həzin</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>3. Segah</h4>
+            <p>Segah ailəsinə Zabul segah, Mirzə Hüseyn segahı, Xaric segah daxildir. Azərbaycanda ən çox yayılan muğamlardan biri sayılır.</p>
+            <p>Dərin emosional ifadəliliyi ilə seçilir, ağlama-yanıqlı tonallığa malikdir.</p>
+            <span class="mood">Ağlamalı, dərin</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>4. Çahargah</h4>
+            <p>Güclü, döyüşkən, qəhrəmanlıq ruhlu muğam. Adı "dördüncü məqam" mənasını verir (çahâr — dörd, gâh — yer).</p>
+            <p>Qəhrəmanlıq, əzm, iradə hisslərini yaradır. Instrumental ifada xüsusilə güclüdür.</p>
+            <span class="mood">Qəhrəmanlıq, qüdrət</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>5. Bayatı-Şiraz</h4>
+            <p>XIX əsrin axırlarından müstəqil muğam kimi formalaşmışdır. Əvvəllər "Bayatı-İsfahan" dəstgahı kimi tanınırdı. "Bayat" — qədim türk tayfasının adı.</p>
+            <p>Şöbələri: Bərdaşt, Mayeyi-Bayatı-Şiraz, Nişibi-fəraz, Bayatı-İsfahan, Xavəran, Üzzal...</p>
+            <span class="mood">Həsrət, yanıqlı</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>6. Şüştər</h4>
+            <p>Azərbaycan musiqisinin yeddi əsas muğamından beşincisi. Lad etibarilə Şur muğamına yaxındır. Üzeyir Hacıbəyov Şüştərin dinləyicidə kədər-qəm hissləri yaratdığını qeyd edirdi.</p>
+            <span class="mood">Kədər, qəm</span>
+        </div>
+
+        <div class="mugam-card">
+            <h4>7. Humayun</h4>
+            <p>"Humayun" sözü türk mifologiyasında "şahanə, uğurlu, səadətli" mənasını verir. Vaxtilə "Qafqaz Humayunu" adı ilə məlum idi. Hacıbəyova görə daha dərin kədər hissi oyadır.</p>
+            <p>Şöbələri: Humayun, Feili, Şüştər, Tərkib, Bidad, Məsnəvi, Üzzal.</p>
+            <span class="mood">Ən dərin kədər</span>
+        </div>
+
+    </div>
 
     <h3>Milli Musiqi Alətləri</h3>
 
     <div class="instrument-grid">
-
         <div class="instrument-card">
             <h4>Tar</h4>
-            <p>
-                Azərbaycan musiqisinin əsas simli alətlərindən biridir.
-            </p>
+            <p>Azərbaycan musiqisinin əsas simli aləti. 11 sim. Muğam ifasının rəmzi.</p>
         </div>
-
         <div class="instrument-card">
             <h4>Kamança</h4>
-            <p>
-                Muğam ifasında mühüm rol oynayan yaylı alətdir.
-            </p>
+            <p>Muğam ifasında mühüm rol oynayan yaylı alət. Dərin, ağlayan tonu var.</p>
         </div>
-
         <div class="instrument-card">
             <h4>Balaban</h4>
-            <p>
-                Xalq musiqisində geniş istifadə olunan nəfəs alətidir.
-            </p>
+            <p>Xalq musiqisində geniş istifadə olunan nəfəs aləti. Azərbaycana xas olan xüsusi tonu var.</p>
         </div>
-
         <div class="instrument-card">
             <h4>Nağara</h4>
-            <p>
-                Ritmik müşayiət üçün istifadə olunan zərb alətidir.
-            </p>
+            <p>Ritmik müşayiət üçün istifadə olunan zərb aləti.</p>
         </div>
-
+        <div class="instrument-card">
+            <h4>Saz (Qopuz)</h4>
+            <p>Aşıqların əsas aləti. Qədim qopuzun varisi. Müqəddəs hesab olunur.</p>
+        </div>
+        <div class="instrument-card">
+            <h4>Ud</h4>
+            <p>Lütnün babası. Şərq musiqi ənənəsinin simvolu, 11–13 sim.</p>
+        </div>
     </div>
 
-    <h3>Şuşa – Azərbaycan Musiqisinin Beşiyi</h3>
-
+    <h3>Şuşa — Azərbaycan Musiqisinin Beşiyi</h3>
     <p>
-        Şuşa şəhəri Azərbaycan musiqisinin mərkəzi hesab olunur.
-        Buna görə şəhər “Qafqazın konservatoriyası” adlandırılmışdır.
+        Şuşa şəhəri Azərbaycan musiqisinin mərkəzi hesab olunur. Buna görə şəhər "Qafqazın konservatoriyası" adlandırılmışdır. Bülbül, Xan Şuşinski, Seyid Şuşinski kimi böyük sənətkarlar burada yetişmişdir.
     </p>
 
-    <p>
-        Bülbül, Xan Şuşinski, Seyid Şuşinski kimi böyük sənətkarlar burada yetişmişdir.
-    </p>
+    <h3>Görkəmli Bəstəkarlar</h3>
 
-    <h3>Üzeyir Hacıbəyov</h3>
+    <div class="person-card">
+        <h4>Üzeyir Hacıbəyov</h4>
+        <div class="years">1885–1948 · Ağcabədi / Şuşa</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Leyli və Məcnun"</strong> (1908) — Şərqdə ilk opera; muğam operası</li>
+            <li><strong>"Şeyx Sənan"</strong> (1909) — ikinci opera</li>
+            <li><strong>"Rüstəm və Zöhrab"</strong> (1910), <strong>"Şah Abbas və Xurşud Banu"</strong> (1911), <strong>"Əsli və Kərəm"</strong> (1912), <strong>"Harun və Leyla"</strong> (1915) — muğam operaları</li>
+            <li><strong>"Ər və arvad"</strong> (1909), <strong>"O olmasın, bu olsun"</strong> (1910), <strong>"Arşın mal alan"</strong> (1913) — operettalar</li>
+            <li><strong>"Koroğlu"</strong> (1936) — şah əsəri, "Stalin mükafatı" (1941)</li>
+            <li><strong>"Azərbaycan xalq musiqisinin əsasları"</strong> (1945) — fundamental elmi əsər</li>
+            <li><strong>Azərbaycan SSR Dövlət himni</strong> (1945)</li>
+            <li>"Sənsiz", "Sevgili canan" — musiqili qəzəllər</li>
+            <li>300-dən çox xalq mahnısını nota salmışdır</li>
+        </ul>
+    </div>
 
-    <p>
-        Azərbaycan professional musiqisinin banisi hesab olunur.
-    </p>
+    <div class="person-card">
+        <h4>Asəf Zeynallı</h4>
+        <div class="years">1909–1932 · Şuşa</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Çahargah" simfonik fantaziyası</strong> — ilk Azərbaycan simfonik əsərlərindən</li>
+            <li><strong>Skripka ilə fortepiano üçün sonatası</strong></li>
+            <li>Mahnılar: "Sona bulaqları", "Ay bəri bax"</li>
+        </ul>
+        <p><em>23 yaşında vərəmdən vəfat etmişdir. Azərbaycan professional musiqisinin ilk nümayəndələrindən biri.</em></p>
+    </div>
 
-    <ul>
-        <li>“Leyli və Məcnun” – Şərqdə ilk opera</li>
-        <li>“Arşın mal alan” operettası</li>
-        <li>Azərbaycan himninin müəllifi</li>
-    </ul>
+    <div class="person-card">
+        <h4>Qara Qarayev</h4>
+        <div class="years">1918–1982 · Bakı</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Leyli və Məcnun"</strong> simfonik poeması</li>
+            <li><strong>"Yeddi gözəl"</strong> baleti (1952) — Nizaminin poeması əsasında; Sovet ölkələrinin ən məşhur baletlərindən biri</li>
+            <li><strong>"İldırımlı yollarla"</strong> baleti (1961) — C.Afrika mövzusunda</li>
+            <li><strong>"Don Kixot"</strong> simfonik qravürləri</li>
+            <li>Skripka ilə simfonik orkestr üçün konsert</li>
+            <li><strong>"Vətən"</strong> operası (Cövdət Hacıyevlə birgə, 1945)</li>
+        </ul>
+        <p><em>XX əsr Azərbaycan bəstəkarlıq məktəbinin aparıcı siması.</em></p>
+    </div>
 
-    <h3>Digər Görkəmli Bəstəkarlar</h3>
-
-    <ul>
-        <li><strong>Asəf Zeynallı</strong> – ilk professional bəstəkarlardan biri</li>
-        <li><strong>Qara Qarayev</strong> – dünya şöhrətli bəstəkar</li>
-        <li><strong>Fikrət Əmirov</strong> – simfonik muğam janrının yaradıcısı</li>
-    </ul>
+    <div class="person-card">
+        <h4>Fikrət Əmirov</h4>
+        <div class="years">1922–1984 · Gəncə</div>
+        <div class="works-title">Əsas əsərləri</div>
+        <ul>
+            <li><strong>"Şur"</strong> simfonik muğamı (1948) — simfonik muğam janrının ilk nümunəsi</li>
+            <li><strong>"Kürd Ovşarı"</strong> simfonik muğamı (1948)</li>
+            <li><strong>"Gülüstan-Bayatı-Şiraz"</strong> simfonik muğamı (1971)</li>
+            <li><strong>"Nizami"</strong> simfoniyası</li>
+            <li><strong>"Sevil"</strong> operası (1953) — C.Cabbarlının dramı əsasında; ilk lirik-psixoloji opera</li>
+            <li><strong>"Min bir gecə"</strong> baleti (1979)</li>
+            <li><strong>"Azərbaycan kapriççiosu"</strong>, <strong>"Azərbaycan süitası"</strong></li>
+            <li>"Ərəb mövzularında konsert" (E.Nəzirova ilə birgə)</li>
+        </ul>
+        <p><em>Simfonik muğam janrının yaradıcısı. Üzeyir Hacıbəyovun tələbəsi.</em></p>
+    </div>
 
     <h3>Azərbaycan Cazı</h3>
-
     <p>
         Azərbaycan Şərqdə caz musiqisinin inkişaf etdiyi ilk ölkələrdən biridir.
-    </p>
-
-    <p>
-        Vaqif Mustafazadə muğam və cazın sintezini yaradaraq “caz-muğam” janrını formalaşdırmışdır.
+        Vaqif Mustafazadə (1940–1979) muğam və cazın sintezini yaradaraq <strong>"caz-muğam"</strong> janrını formalaşdırmışdır. "Caz bizim ruhlarımızın ifadəsidir" demişdir.
     </p>
 </section>
 
-<!-- AZƏRBAYCAN KİNOSU SECTION -->
-
+<!-- ========================= -->
+<!-- 13. KİNO -->
+<!-- ========================= -->
 <section id="kino">
     <h2>13. Azərbaycan Kinosu</h2>
 
     <p>
-        Azərbaycan kinosu Şərqdə ən qədim kino məktəblərindən biridir.
-        Kino Azərbaycanda həm maarifçilik, həm də əyləncə vasitəsi kimi inkişaf etmişdir.
-    </p>
-
-    <h3>25-ci Kadr</h3>
-
-    <p>
-        “25-ci kadr” insan gözünün birbaşa hiss etmədiyi gizli təsir texnikası ilə bağlı anlayışdır.
-        Bu nəzəriyyəyə görə sürətli şəkildə göstərilən əlavə görüntü insanın şüuraltısına təsir edə bilər.
+        Azərbaycan kinosu Şərqdə ən qədim kino məktəblərindən biridir. Kino Azərbaycanda həm maarifçilik, həm də əyləncə vasitəsi kimi inkişaf etmişdir.
     </p>
 
     <h3>Azərbaycan Kinosunun Başlanğıcı</h3>
 
     <div class="subsection">
-        <h4>1898-ci il – İlk kino çəkilişləri</h4>
-
-        <p>
-            Azərbaycan kinosunun tarixi 1898-ci ildən başlayır.
-            Fransız fotoqraf və operator Aleksandr Mişon Bakıda ilk film çəkilişlərini həyata keçirmişdir.
-        </p>
-
-        <h5>Əsas çəkilişlər:</h5>
-
+        <h4>1898-ci il — İlk kino çəkilişləri</h4>
+        <p>Fransız fotoqraf Aleksandr Mişon Bakıda ilk film çəkilişlərini həyata keçirmişdir. Filmlər Paris sərgisində nümayiş etdirilmişdir.</p>
         <ul>
             <li>Bibiheybətdə neft fontanı yanğını</li>
             <li>Qafqaz xalq rəqsləri</li>
             <li>Bakı həyatı</li>
         </ul>
-
-        <p>
-            Bu filmlər Paris sərgisində nümayiş etdirilmişdir.
-        </p>
     </div>
 
     <div class="subsection">
-        <h4>Maarifçilik yoxsa əyləncə?</h4>
-
-        <p>
-            İlk dövrlərdə Azərbaycan teatrı əsasən maarifçilik məqsədi daşıyırdı.
-            Kino isə həm maarifləndirici, həm də əyləncə xarakterli idi.
-        </p>
-
-        <p>
-            Teatr canlı səhnə üzərində qurulduğu halda, kino texnologiya və görüntü vasitəsilə daha geniş auditoriyaya çatırdı.
-        </p>
-    </div>
-
-    <div class="subsection">
-        <h4>“Neft və milyonlar səltənətində” (1916)</h4>
-
-        <p>
-            Azərbaycan kino tarixinin ilk bədii filmlərindən biridir.
-        </p>
-
+        <h4>"Neft və milyonlar səltənətində" (1916)</h4>
+        <p>Azərbaycan kino tarixinin ilk bədii filmlərindən biri.</p>
         <ul>
             <li>Rejissor: Boris Svetlov</li>
             <li>Ssenari: İbrahim bəy Musabəyov</li>
         </ul>
-
-        <p>
-            Film Bakı neft milyonçularının həyatından bəhs edir.
-        </p>
+        <p>Film Bakı neft milyonçularının həyatından bəhs edir.</p>
     </div>
 
     <div class="subsection">
-        <h4>“Arşın mal alan”</h4>
-
-        <p>
-            Üzeyir Hacıbəyovun operettası əsasında çəkilmişdir.
-        </p>
-
-        <p>
-            İlk versiyası 1916-cı ildə səssiz film kimi çəkilmişdir.
-        </p>
-
-        <p>
-            Sonrakı ekran versiyası isə dünya şöhrəti qazanmışdır.
-        </p>
+        <h4>"Arşın mal alan" (1916, 1945)</h4>
+        <p>Üzeyir Hacıbəyovun operettası əsasında çəkilmişdir. İlk versiyası 1916-cı ildə səssiz film kimi çəkilmişdir. 1945-ci ildəki əsas versiyası dünya şöhrəti qazanmışdır. SSRİ mükafatı laureatı olmuşdur.</p>
     </div>
 
-    <h3>Sovet Dövrü Kinosu</h3>
-
-    <p>
-        Sovet dövründə Azərbaycanfilm kinostudiyası fəaliyyət göstərirdi.
-        Bu dövrdə həm ideoloji, həm də bədii filmlər çəkilmişdir.
-    </p>
-
-    <h5>Məşhur filmlər:</h5>
-
+    <h3>Sovet Dövrü Kinosu — Məşhur Filmlər</h3>
     <ul>
-        <li>O olmasın, bu olsun</li>
-        <li>Arşın mal alan</li>
-        <li>Nəsimi</li>
-        <li>Babək</li>
-        <li>Yeddi oğul istərəm</li>
+        <li><strong>"O olmasın, bu olsun"</strong> (1956)</li>
+        <li><strong>"Arşın mal alan"</strong> (1945)</li>
+        <li><strong>"Nəsimi"</strong> (1974) — Hüseyn Seyidzadənin rejissurası</li>
+        <li><strong>"Babək"</strong> (1979) — tarixi film</li>
+        <li><strong>"Yeddi oğul istərəm"</strong> (1970)</li>
+        <li><strong>"Dəlilər"</strong> (1962)</li>
     </ul>
 
     <h3>Müasir Azərbaycan Kinosu</h3>
-
-    <p>
-        Müasir dövrdə Qarabağ müharibəsi, sosial problemlər və milli kimlik mövzuları geniş işlənir.
-    </p>
-
     <ul>
-        <li>Müharibə filmləri</li>
+        <li>Qarabağ müharibəsi mövzusu geniş işlənir</li>
         <li>Müstəqil rejissor məktəbləri</li>
         <li>Beynəlxalq festivallar</li>
         <li>Yeni teleseriallar</li>
     </ul>
 </section>
 
-<!-- AZƏRBAYCAN DİNDARLIĞI SECTION -->
-
+<!-- ========================= -->
+<!-- 14. DİNDARLIQ -->
+<!-- ========================= -->
 <section id="din">
     <h2>14. Azərbaycan Dindarlığı</h2>
 
     <p>
         Azərbaycan tarix boyunca müxtəlif dinlərin və inancların birgə yaşadığı tolerant ölkə olmuşdur.
-        Əhalinin böyük əksəriyyəti müsəlman olsa da, ölkədə ciddi dini qarşıdurmalar müşahidə edilməmişdir.
     </p>
 
     <h3>Dini Tolerantlıq</h3>
-
-    <p>
-        Azərbaycanda tarixən müsəlmanlar, xristianlar, yəhudilər və digər dini qruplar birlikdə yaşamışdır.
-    </p>
-
     <ul>
-        <li>Antisemitizm geniş yayılmamışdır</li>
-        <li>Molokanlar Azərbaycanda məskunlaşmışdır</li>
+        <li>Antisemitizm geniş yayılmamışdır — Quba-Qırmızı qəsəbə Qafqaz yəhudilərinin tarixi məskənidir</li>
+        <li>Molokanlar (rus xrisitanları) Azərbaycanda məskunlaşmışdır</li>
         <li>Məzhəblərarası qarşıdurmalar nadir olmuşdur</li>
     </ul>
 
     <h3>Tenqriizm</h3>
-
-    <p>
-        Tenqriizm qədim türk inanclar sistemidir.
-    </p>
-
-    <h5>Əsas xüsusiyyətləri:</h5>
-
+    <p>Tenqriizm qədim türk inanclar sistemidir.</p>
     <ul>
         <li>Göy Tanrı inancı</li>
         <li>Təbiətə bağlılıq</li>
@@ -1405,72 +1635,41 @@
     </ul>
 
     <blockquote>
-        “Tanrıya çatmaq üçün müxtəlif yollar vardır.”
-        — Monqke Xan
+        "Tanrıya çatmaq üçün müxtəlif yollar vardır." — Monqke Xan
     </blockquote>
 
     <h3>Zərdüştilik</h3>
-
-    <p>
-        Azərbaycanda qədim dövrlərdə geniş yayılmış dini inanclardan biridir.
-    </p>
-
-    <h5>Əsas anlayışlar:</h5>
-
+    <p>Azərbaycanda qədim dövrlərdə geniş yayılmış dini inanclardan biridir.</p>
     <ul>
-        <li>Ahura Mazda – xeyir qüvvəsi</li>
-        <li>Əhrimən – şər qüvvəsi</li>
+        <li>Ahura Mazda — xeyir qüvvəsi</li>
+        <li>Əhrimən — şər qüvvəsi</li>
         <li>Kosmik dualizm</li>
-        <li>Odun müqəddəsliyi</li>
+        <li>Odun müqəddəsliyi — Bakıdakı "Atəşgah" məbədi bunun yadigarıdır</li>
     </ul>
-
-    <p>
-        Zərdüştilərin müqəddəs kitabı “Avesta”dır.
-    </p>
+    <p>Müqəddəs kitab: "Avesta"</p>
 
     <h3>Xristianlıq</h3>
-
-    <p>
-        Qafqaz Albaniyası dövründə xristianlıq dövlət dini olmuşdur.
-    </p>
-
-    <p>
-        Azərbaycanın qədim alban kilsələri bu gün də tarixi irs hesab olunur.
-    </p>
+    <p>Qafqaz Albaniyası dövründə (I–VIII əsr) xristianlıq dövlət dini olmuşdur. Azərbaycanın qədim alban kilsələri bu gün də tarixi irs hesab olunur (Qax, Şəki rayonlarında).</p>
 
     <h3>İslam</h3>
-
-    <p>
-        VII əsrdən etibarən İslam Azərbaycanda əsas dinə çevrilmişdir.
-    </p>
-
-    <p>
-        Azərbaycanda həm şiə, həm də sünni müsəlmanlar birlikdə yaşamışdır.
-    </p>
+    <p>VII əsrdən etibarən İslam Azərbaycanda əsas dinə çevrilmişdir. Azərbaycanda həm şiə, həm də sünni müsəlmanlar birlikdə yaşamışdır.</p>
 
     <h3>Pir Dindarlığı</h3>
-
-    <p>
-        Azərbaycanda müqəddəs ziyarətgahlar və pirlər xalq inanclarının mühüm hissəsidir.
-    </p>
-
-    <p>
-        İnsanlar bu məkanlara şəfa, dua və mənəvi rahatlıq məqsədilə gedirlər.
-    </p>
+    <p>Azərbaycanda müqəddəs ziyarətgahlar və pirlər xalq inanclarının mühüm hissəsidir. İnsanlar bu məkanlara şəfa, dua və mənəvi rahatlıq məqsədilə gedirlər.</p>
 
     <h3>Dindarlığın Ədəbiyyatda Əksi</h3>
-
     <ul>
-        <li>Nizami – “Yeddi gözəl”</li>
-        <li>“Əsli və Kərəm” dastanı</li>
-        <li>Nəsiminin dini-fəlsəfi şeirləri</li>
-        <li>Hüseyn Cavid – “Şeyx Sənan”</li>
-        <li>Yusif Vəzir Çəmənzəminli – “Əli və Nino”</li>
+        <li>Nizami — "Yeddi gözəl" — dini-fəlsəfi hikmət</li>
+        <li>"Əsli və Kərəm" dastanı — dini tolerantlıq mövzusu</li>
+        <li>Nəsiminin dini-fəlsəfi şeirləri — hürufizm</li>
+        <li>Hüseyn Cavid — "Şeyx Sənan" — ölməz eşq və din</li>
+        <li>Yusif Vəzir Çəmənzəminli — "Əli və Nino" (1937)</li>
     </ul>
 </section>
 
-<!-- MULTİKULTURALİZM SECTION -->
-
+<!-- ========================= -->
+<!-- 15. MULTİKULTURALİZM -->
+<!-- ========================= -->
 <section id="multikulturalizm">
     <h2>15. Multikulturalizm</h2>
 
@@ -1479,7 +1678,6 @@
     </p>
 
     <h3>Multikulturalizm Nədir?</h3>
-
     <p>
         Multikulturalizm müxtəlif mədəniyyətlərin və etnik qrupların eyni cəmiyyətdə qarşılıqlı hörmət və bərabərlik şəraitində yaşamasıdır.
     </p>
@@ -1488,20 +1686,13 @@
 
     <div class="subsection">
         <h4>1. Təsviri aspekt</h4>
-
-        <p>
-            Cəmiyyətdə müxtəlif xalqların və dinlərin mövcudluğunu ifadə edir.
-        </p>
+        <p>Cəmiyyətdə müxtəlif xalqların və dinlərin mövcudluğunu ifadə edir.</p>
 
         <h4>2. Siyasi aspekt</h4>
-
-        <p>
-            Dövlətin müxtəlif mədəniyyətlərin hüquqlarını qoruması siyasətidir.
-        </p>
+        <p>Dövlətin müxtəlif mədəniyyətlərin hüquqlarını qoruması siyasətidir.</p>
     </div>
 
     <h3>Azərbaycan Multikulturalizminin Xüsusiyyətləri</h3>
-
     <ul>
         <li>Dərin tolerantlıq ənənəsi</li>
         <li>Dini müxtəliflik</li>
@@ -1510,34 +1701,25 @@
         <li>Sivilizasiyalararası körpü rolu</li>
     </ul>
 
-    <h3>Tarixi və Mədəni Kökələr</h3>
-
-    <p>
-        Azərbaycan multikulturalizmi qədim tarixə malikdir.
-    </p>
-
+    <h3>Tarixi və Mədəni Köklər</h3>
     <h5>Ədəbi və mədəni nümunələr:</h5>
-
     <ul>
-        <li>Dədə Qorqud dastanı</li>
-        <li>Nizami Gəncəvi – “Xəmsə”</li>
-        <li>Füzuli – “Leyli və Məcnun”</li>
-        <li>Hüseyn Cavid – “Şeyx Sənan”</li>
+        <li>Dədə Qorqud dastanı — müxtəlif xalqların birliyini tərənnüm edir</li>
+        <li>Nizami Gəncəvi — "Xəmsə" — bəşəriyyətin ümumi mədəni irsi</li>
+        <li>Füzuli — "Leyli və Məcnun" — milliyyətdən uca eşq</li>
+        <li>Hüseyn Cavid — "Şeyx Sənan" — dinlər arası sevgi</li>
     </ul>
 
     <h3>Azərbaycan Xalq Cümhuriyyəti</h3>
 
     <blockquote>
-        “Azərbaycan Xalq Cümhuriyyəti etnik, dini və cinsi mənsubiyyətindən asılı olmayaraq bütün vətəndaşların hüquqlarını təmin edir.”
+        "Azərbaycan Xalq Cümhuriyyəti etnik, dini və cinsi mənsubiyyətindən asılı olmayaraq bütün vətəndaşların hüquqlarını təmin edir."
     </blockquote>
 
     <h3>Eliza Reklunun Müşahidələri</h3>
-
     <p>
-        Fransız coğrafiyaşünası Eliza Reklu azərbaycanlıların qonaqpərvərliyini,
-        tolerantlığını və savadlılığını xüsusi vurğulamışdır.
+        Fransız coğrafiyaşünası Eliza Reklu azərbaycanlıların qonaqpərvərliyini, tolerantlığını və savadlılığını xüsusi vurğulamışdır.
     </p>
-
     <ul>
         <li>Qonaqpərvərlik</li>
         <li>Savadlılıq</li>
@@ -1546,21 +1728,17 @@
     </ul>
 
     <h3>Multikulturalizm Böhranı</h3>
-
     <p>
-        Müasir dünyada bəzi ölkələrdə multikulturalizm siyasətinin uğursuzluğu müzakirə olunur.
-        Bunun əsas səbəbləri:
+        Müasir dünyada bəzi ölkələrdə multikulturalizm siyasətinin uğursuzluğu müzakirə olunur. Əsas səbəblər:
     </p>
-
     <ul>
         <li>İnteqrasiya problemləri</li>
         <li>Radikalizm</li>
         <li>İrqçilik və ayrı-seçkilik</li>
         <li>Mədəni qarşıdurmalar</li>
     </ul>
-
     <p>
-        Azərbaycan isə multikulturalizmi dövlət siyasəti səviyyəsində dəstəkləyən ölkələrdən biridir.
+        Azərbaycan isə multikulturalizmi dövlət siyasəti səviyyəsində dəstəkləyən ölkələrdən biridir. Bakıda Aşkenazi yəhudi sinaqoqu, katolik kilsəsi, rus pravoslav kilsəsi, şiə və sünni məscidlər yan-yana mövcuddur.
     </p>
 </section>
 
@@ -1570,6 +1748,5 @@
     <p>© 2026 Azərbaycan Mədəniyyəti və Tarixi</p>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
