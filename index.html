@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Azərbaycan Mədəniyyəti və Tarixi</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --crimson: #A0192A;
@@ -102,6 +103,84 @@
             border-bottom-color: var(--crimson);
         }
 
+        /* ===== NAV WRAPPER ===== */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        /* LOGO */
+        .logo {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            color: var(--text);
+        }
+        
+        /* HAMBURGER BUTTON */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+        
+        /* MENU RESET */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+        
+        /* DESKTOP LINK STYLE (SƏNİN ORİJİNALIN KİMİ) */
+        .nav-menu li a {
+            display: block;
+            padding: 14px 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--crimson);
+            border-bottom-color: var(--crimson);
+        }
+        
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+        
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--warm);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                border-bottom: 2px solid var(--border);
+            }
+        
+            .nav-menu li a {
+                padding: 12px 20px;
+                border-bottom: 1px solid var(--border);
+            }
+        
+            .nav-menu.active {
+                display: flex;
+            }
+        }
         /* ===== MAIN ===== */
         main { max-width: 900px; margin: 0 auto; padding: 50px 30px 80px; }
 
@@ -391,24 +470,28 @@
     <p>Milli kimlikdən musiqiyə, ədəbiyyatdan dövlətçilik tarixinə qədər geniş məlumat bazası</p>
 </header>
 
-<nav>
-    <ul>
-        <li><a href="#milli">Milli Kimlik</a></li>
-        <li><a href="#dede">Dədə Qorqud</a></li>
-        <li><a href="#qizil">Qızıl Çağ</a></li>
-        <li><a href="#nizami">Nizami</a></li>
-        <li><a href="#maarifcilik">Maarifçilik</a></li>
-        <li><a href="#cumhuriyyet">Cümhuriyyət</a></li>
-        <li><a href="#sovet">Sovet Dövrü</a></li>
-        <li><a href="#ilkler">İlklər</a></li>
-        <li><a href="#dil">Ədəbi Dil</a></li>
-        <li><a href="#metbex">Mətbəx</a></li>
-        <li><a href="#teatr">Teatr</a></li>
-        <li><a href="#musiqi">Musiqi</a></li>
-        <li><a href="#kino">Kino</a></li>
-        <li><a href="#din">Dindarlıq</a></li>
-        <li><a href="#multikulturalizm">Multikulturalizm</a></li>
-    </ul>
+<nav> 
+<div class="nav-container">
+    <div class="logo">Azərbaycan Mədəniyyəti</div>
+    <button class="menu-toggle">☰</button>
+        <ul class="nav-menu">
+            <li><a href="#milli">Milli Kimlik</a></li>
+            <li><a href="#dede">Dədə Qorqud</a></li>
+            <li><a href="#qizil">Qızıl Çağ</a></li>
+            <li><a href="#nizami">Nizami</a></li>
+            <li><a href="#maarifcilik">Maarifçilik</a></li>
+            <li><a href="#cumhuriyyet">Cümhuriyyət</a></li>
+            <li><a href="#sovet">Sovet Dövrü</a></li>
+            <li><a href="#ilkler">İlklər</a></li>
+            <li><a href="#dil">Ədəbi Dil</a></li>
+            <li><a href="#metbex">Mətbəx</a></li>
+            <li><a href="#teatr">Teatr</a></li>
+            <li><a href="#musiqi">Musiqi</a></li>
+            <li><a href="#kino">Kino</a></li>
+            <li><a href="#din">Dindarlıq</a></li>
+            <li><a href="#multikulturalizm">Multikulturalizm</a></li>
+        </ul>
+    </div>    
 </nav>
 
 <main>
@@ -2531,4 +2614,13 @@
 </footer>
 
 </body>
+
+    <script>
+        const toggleBtn = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".nav-menu");
+    
+        toggleBtn.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        });
+    </script>
 </html>
